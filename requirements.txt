@@ -1,0 +1,16 @@
+# Core Dependencies
+openai-whisper>=20231117
+torch>=2.0.0
+torchaudio>=2.0.0
+
+# Speaker Diarization
+pyannote.audio>=3.1.0
+pyannote.core>=5.0.0
+
+# Audio Processing
+pydub>=0.25.1
+ffmpeg-python>=0.2.0
+
+# Utilities
+numpy>=1.24.0
+pandas>=2.0.0
