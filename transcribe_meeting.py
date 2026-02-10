@@ -52,7 +52,7 @@ class MeetingTranscriber:
         print("Loading speaker diarization pipeline...")
         self.diarization_pipeline = Pipeline.from_pretrained(
             "pyannote/speaker-diarization-3.1",
-            use_auth_token=hf_token
+            token=hf_token  # Changed from use_auth_token to token
         )
         
         if self.device == "cuda":
