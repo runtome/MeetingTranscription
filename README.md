@@ -10,6 +10,8 @@ Automatic transcription tool for Thai language meetings using OpenAI Whisper wit
 - ✅ **Timestamps** - Each segment includes timing information
 - ✅ **GPU acceleration** - Faster processing with CUDA support
 - ✅ **Multiple audio formats** - Supports MP3, WAV, M4A, FLAC, etc.
+- ✅ **Fine-tuning** - Fine-tune Whisper on custom Thai audio data using HuggingFace Transformers
+- ✅ **Batch processing** - Transcribe entire directories to CSV with batch scripts
 
 ## Requirements
 
@@ -49,8 +51,19 @@ venv\Scripts\activate
 
 ### 3. Install Python Dependencies
 
+**Full version** (with pyannote speaker diarization):
 ```bash
 pip install -r requirements.txt
+```
+
+**Simple version** (no pyannote/HuggingFace needed):
+```bash
+pip install -r requirements_simple.txt
+```
+
+**Fine-tuning** (for training Whisper on custom data):
+```bash
+pip install -r requirements_finetune.txt
 ```
 
 **Note:** The first time you run the tool, it will download the Whisper model (~1.5GB for medium model).
@@ -201,6 +214,88 @@ transcriber.process_meeting(
 )
 ```
 
+## Fine-tuning Whisper on Custom Thai Data
+
+You can fine-tune Whisper on your own Thai audio dataset to improve accuracy for your specific domain.
+
+### Data Format
+
+Prepare your data in the following structure:
+```
+train/
+├── annotation/
+│   └── train.csv       # CSV with columns: path, sentence
+└── audio/
+    ├── audio_001.mp3
+    ├── audio_002.mp3
+    └── ...
+val/
+├── annotation/
+│   └── train.csv
+└── audio/
+    └── ...
+```
+
+The CSV file format:
+```csv
+path,sentence
+audio_001.mp3,สวัสดีครับ วันนี้เราจะมาประชุม
+audio_002.mp3,ขอบคุณครับ ผมมีข้อเสนอ
+```
+
+### Training
+
+```bash
+# Install fine-tuning dependencies
+pip install -r requirements_finetune.txt
+
+# Fine-tune with default settings (whisper-small)
+python finetune_whisper.py
+
+# Fine-tune with custom settings
+python finetune_whisper.py \
+    --model_name openai/whisper-medium \
+    --batch_size 4 \
+    --epochs 5 \
+    --learning_rate 1e-5 \
+    --output_dir ./whisper-thai-finetuned
+```
+
+### VRAM Requirements for Fine-tuning
+
+| Model  | Approximate VRAM |
+|--------|-----------------|
+| small  | ~8 GB           |
+| medium | ~12 GB          |
+| large  | ~16 GB+         |
+
+Reduce `--batch_size` if you run out of VRAM. Use `--gradient_accumulation_steps` to maintain effective batch size.
+
+### Inference with Fine-tuned Model
+
+```bash
+# Batch transcribe using the fine-tuned model
+python batch_to_csv.py --finetuned_model ./whisper-thai-finetuned
+
+# With custom input/output paths
+python batch_to_csv.py \
+    --finetuned_model ./whisper-thai-finetuned \
+    --input_dir ./test \
+    --output_file submission.csv
+```
+
+## Batch Transcription to CSV
+
+Transcribe all MP3 files in a directory to a single CSV file:
+
+```bash
+# Using openai-whisper (default)
+python batch_to_csv.py --input_dir test --output_file submission.csv
+
+# Using a fine-tuned HuggingFace model
+python batch_to_csv.py --finetuned_model ./whisper-thai-finetuned
+```
+
 ## Tips for Best Results
 
 ### Audio Quality
@@ -254,12 +349,20 @@ Solution: Make sure you activated virtual environment and ran `pip install -r re
 
 ```
 thai-transcription/
-├── transcribe_meeting.py    # Main script with all features
-├── simple_transcribe.py     # Simple example for quick start
-├── config.py               # Configuration file
-├── requirements.txt        # Python dependencies
-├── README.md              # This file
-└── transcriptions/        # Output directory (created automatically)
+├── transcribe_meeting.py          # Full pipeline (Whisper + pyannote diarization)
+├── transcribe_meeting_simple.py   # Simple version (pause/clustering-based speakers)
+├── simple_transcribe.py           # Minimal standalone example
+├── batch_transcribe.py            # Batch process audio directories
+├── batch_to_csv.py                # Batch transcribe to CSV (supports fine-tuned models)
+├── finetune_whisper.py            # Fine-tune Whisper on custom data
+├── audio_utils.py                 # Audio utilities (convert, normalize, split, info)
+├── config.py                      # Configuration constants
+├── requirements.txt               # Dependencies (full version)
+├── requirements_simple.txt        # Dependencies (simple version)
+├── requirements_finetune.txt      # Dependencies (fine-tuning)
+├── test_installation.py           # Verify installation
+├── README.md                      # This file
+└── transcriptions/                # Output directory (created automatically)
     ├── meeting_transcript.txt
     ├── meeting_transcript.json
     └── meeting_transcript.srt
@@ -330,6 +433,7 @@ python transcribe_meeting.py meeting.mp3 -l en  # English
 ## Credits
 
 - **OpenAI Whisper**: https://github.com/openai/whisper
+- **HuggingFace Transformers**: https://github.com/huggingface/transformers
 - **Pyannote Audio**: https://github.com/pyannote/pyannote-audio
 
 ## License
