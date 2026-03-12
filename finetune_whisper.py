@@ -17,8 +17,8 @@ def main():
         description="Fine-tune Whisper for Thai speech recognition"
     )
     parser.add_argument(
-        "--model_name", default="openai/whisper-small",
-        help="HuggingFace model name (default: openai/whisper-small)"
+        "--model_name", default="openai/whisper-base",
+        help="HuggingFace model name (default: openai/whisper-base)"
     )
     parser.add_argument(
         "--train_csv", default="train/annotation/train.csv",
@@ -29,8 +29,8 @@ def main():
         help="Directory with training audio files (default: train/audio)"
     )
     parser.add_argument(
-        "--val_csv", default="val/annotation/train.csv",
-        help="Path to validation CSV (default: val/annotation/train.csv)"
+        "--val_csv", default="val/annotation/dev.csv",
+        help="Path to validation CSV (default: val/annotation/dev.csv)"
     )
     parser.add_argument(
         "--val_audio_dir", default="val/audio",
@@ -90,7 +90,13 @@ def main():
             filename, sentence = self.samples[idx]
             audio_path = self.audio_dir / filename
 
-            audio, _ = librosa.load(str(audio_path), sr=16000)
+            try:
+                audio, _ = librosa.load(str(audio_path), sr=16000)
+            except Exception as e:
+                print(f"WARNING: Skipping corrupted file {filename}: {e}")
+                # Return a short silence with empty transcription
+                audio = np.zeros(16000, dtype=np.float32)
+                sentence = ""
 
             input_features = self.processor(
                 audio, sampling_rate=16000, return_tensors="np"
