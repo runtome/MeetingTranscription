@@ -162,6 +162,7 @@ def main():
 
     data_collator = DataCollatorSpeechSeq2SeqWithPadding(processor=processor)
     wer_metric = evaluate.load("wer")
+    # wer_metric = evaluate.load("wer", cache_dir="/project/zz991000-zdeva/zz991010/hf/evaluate")
 
     training_args = Seq2SeqTrainingArguments(
         output_dir=args.output_dir,
