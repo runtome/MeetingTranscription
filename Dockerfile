@@ -2,18 +2,21 @@ FROM pytorch/pytorch:2.10.0-cuda12.8-cudnn9-devel
 
 WORKDIR /workspace
 
-# Install ffmpeg
+# Install system packages
 RUN apt-get update && \
-    apt-get install -y ffmpeg && \
+    apt-get install -y ffmpeg git && \
     rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies (only what batch_to_csv.py needs)
-RUN pip install --no-cache-dir \
+# Upgrade pip
+RUN python -m pip install --upgrade pip
+
+# Install Python dependencies
+RUN pip install --no-cache-dir --break-system-packages \
     openai-whisper>=20231117 \
     transformers>=4.36.0 \
     numpy>=1.24.0
 
-# Copy project files
-COPY batch_to_csv.py .
+# Copy script (optional if you mount folder in Apptainer)
+# COPY batch_to_csv.py .
 
-CMD ["python", "batch_to_csv.py"]
+# CMD ["python", "batch_to_csv.py"]
