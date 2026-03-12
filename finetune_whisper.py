@@ -104,6 +104,10 @@ def main():
 
             labels = self.processor.tokenizer(sentence).input_ids
 
+            # Whisper max label length is 448 tokens; truncate to avoid ValueError
+            if len(labels) > 448:
+                labels = labels[:448]
+
             return {"input_features": input_features, "labels": labels}
 
     @dataclass
