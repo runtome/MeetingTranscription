@@ -23,12 +23,32 @@ def preload_whisper(model_size="medium"):
     print(f"Done! Whisper '{model_size}' model cached.")
 
 
-def preload_hf_model(model_name):
-    from transformers import WhisperForConditionalGeneration, WhisperProcessor
+def preload_hf_model(model_name, save_dir=None):
+    from transformers import WhisperForConditionalGeneration, WhisperProcessor, WhisperFeatureExtractor, WhisperTokenizer
+
+    if save_dir is None:
+        save_dir = model_name.replace("/", "_")
+
     print(f"Downloading HuggingFace model: {model_name} ...")
-    WhisperProcessor.from_pretrained(model_name)
-    WhisperForConditionalGeneration.from_pretrained(model_name)
-    print(f"Done! HuggingFace '{model_name}' model cached.")
+    print(f"  Saving to local directory: {save_dir}")
+
+    print("  Downloading feature extractor...")
+    feat = WhisperFeatureExtractor.from_pretrained(model_name)
+    feat.save_pretrained(save_dir)
+
+    print("  Downloading tokenizer...")
+    tok = WhisperTokenizer.from_pretrained(model_name)
+    tok.save_pretrained(save_dir)
+
+    print("  Downloading processor...")
+    proc = WhisperProcessor.from_pretrained(model_name)
+    proc.save_pretrained(save_dir)
+
+    print("  Downloading model weights...")
+    model = WhisperForConditionalGeneration.from_pretrained(model_name)
+    model.save_pretrained(save_dir)
+
+    print(f"Done! Model saved to '{save_dir}'. Use this path instead of '{model_name}' on compute nodes.")
 
 
 if __name__ == "__main__":
