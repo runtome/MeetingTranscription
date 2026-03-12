@@ -21,13 +21,22 @@ def batch_transcribe_to_csv(input_dir="test", output_file="submission.csv", mode
         return
 
     print(f"Found {len(audio_files)} .mp3 files")
+
+    import torch
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"Using device: {device}")
+    if device == "cuda":
+        print(f"GPU: {torch.cuda.get_device_name(0)}")
+    else:
+        print("WARNING: CUDA not available, running on CPU (this will be very slow!)")
+
     print(f"Loading Whisper {model_size} model...")
-    model = whisper.load_model(model_size)
+    model = whisper.load_model(model_size, device=device)
 
     results = []
     for i, audio_file in enumerate(audio_files, 1):
         print(f"[{i}/{len(audio_files)}] Transcribing: {audio_file.name}")
-        result = model.transcribe(str(audio_file), language="th")
+        result = model.transcribe(str(audio_file), language="th", fp16=(device == "cuda"))
         sentence = result["text"].strip()
         results.append((audio_file.name, sentence))
         print(f"  -> {sentence[:80]}{'...' if len(sentence) > 80 else ''}")
