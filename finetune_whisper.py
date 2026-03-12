@@ -149,7 +149,7 @@ def main():
 
     print(f"Loading processor and model: {args.model_name}")
     processor = WhisperProcessor.from_pretrained(args.model_name)
-    model = WhisperForConditionalGeneration.from_pretrained(args.model_name)
+    model = WhisperForConditionalGeneration.from_pretrained(args.model_name, torch_dtype=torch.float32)
 
     # Force Thai language and transcribe task
     model.generation_config.language = "th"
@@ -171,7 +171,7 @@ def main():
         learning_rate=args.learning_rate,
         warmup_steps=args.warmup_steps,
         num_train_epochs=args.epochs,
-        fp16=torch.cuda.is_available(),
+        bf16=torch.cuda.is_available(),
         gradient_checkpointing=True,
         eval_strategy="steps",
         save_strategy="steps",
