@@ -274,6 +274,24 @@ Reduce `--batch_size` if you run out of VRAM. Use `--gradient_accumulation_steps
 ### Inference with Fine-tuned Model
 
 ```bash
+# Transcribe all audio files in test/ folder and output CSV (path,sentence)
+python inference_whisper.py --model ./whisper-thai-finetuned --test_dir test --output results.csv
+
+# With custom language
+python inference_whisper.py --model ./whisper-thai-finetuned --test_dir test --output results.csv --language th
+```
+
+Output CSV format:
+```csv
+path,sentence
+LOTUSDIS_000001.mp3,สวัสดีครับ วันนี้เราจะมาประชุม
+LOTUSDIS_000002.mp3,ขอบคุณครับ ผมมีข้อเสนอ
+LOTUSDIS_000003.mp3,เรามาเริ่มกันเลย
+```
+
+You can also use `batch_to_csv.py` for batch transcription:
+
+```bash
 # Batch transcribe using the fine-tuned model
 python batch_to_csv.py --finetuned_model ./whisper-thai-finetuned
 
@@ -355,6 +373,7 @@ thai-transcription/
 ├── batch_transcribe.py            # Batch process audio directories
 ├── batch_to_csv.py                # Batch transcribe to CSV (supports fine-tuned models)
 ├── finetune_whisper.py            # Fine-tune Whisper on custom data
+├── inference_whisper.py           # Inference with fine-tuned model (outputs CSV)
 ├── audio_utils.py                 # Audio utilities (convert, normalize, split, info)
 ├── config.py                      # Configuration constants
 ├── requirements.txt               # Dependencies (full version)
