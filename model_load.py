@@ -6,4 +6,9 @@ model_name = "openai/whisper-base"
 processor = WhisperProcessor.from_pretrained(model_name)
 model = WhisperForConditionalGeneration.from_pretrained(model_name)
 
+model_name2 = "openai/whisper-large-v3"
+
+processor2 = WhisperProcessor.from_pretrained(model_name2)
+model2 = WhisperForConditionalGeneration.from_pretrained(model_name2)
+
 wer = evaluate.load("wer")
