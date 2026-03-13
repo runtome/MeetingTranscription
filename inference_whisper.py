@@ -8,11 +8,38 @@ Usage:
 
 import argparse
 import csv
+import re
 from pathlib import Path
 
 import librosa
 import torch
+from pythainlp.tokenize import word_tokenize
 from transformers import WhisperForConditionalGeneration, WhisperProcessor
+
+
+def clean_thai_asr_keep_space(text):
+    if not text:
+        return ""
+
+    text = str(text)
+
+    # 1. remove long character repeat
+    text = re.sub(r'(.)\1{4,}', r'\1', text)
+
+    # 2. remove repeated phrases
+    text = re.sub(r'(.{2,20})\1{3,}', r'\1', text)
+
+    # 3. remove repeated words but keep spacing
+    tokens = word_tokenize(text, engine="newmm")
+
+    result = []
+    prev = None
+    for t in tokens:
+        if t != prev:
+            result.append(t)
+        prev = t
+
+    return "".join(result)
 
 
 def main():
@@ -50,9 +77,11 @@ def main():
                     predicted_ids = model.generate(inputs, language=args.language, task="transcribe")
 
                 text = processor.batch_decode(predicted_ids, skip_special_tokens=True)[0].strip()
-                writer.writerow([audio_file.name, text])
+                cleaned_text = clean_thai_asr_keep_space(text)
+                writer.writerow([audio_file.name, cleaned_text])
                 print(f"[{i}/{len(audio_files)}] Transcribing: {audio_file.name}")
-                print(f"  -> {text}")
+                print(f"  -> raw:     {text}")
+                print(f"  -> cleaned: {cleaned_text}")
             except Exception as e:
                 print(f"[{i}/{len(audio_files)}] Transcribing: {audio_file.name}")
                 print(f"  -> ERROR: {e}")
