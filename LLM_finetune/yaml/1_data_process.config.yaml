@@ -1,0 +1,19 @@
+### Data Processing / Tokenization Config
+### Usage: llamafactory-cli train yaml/1_data_process.config.yaml
+
+### Model
+model_name_or_path: ${PROJECT_PATH}/model/qwen3-8b
+
+### Dataset
+stage: sft
+dataset: asr_correction_train
+dataset_dir: ${PROJECT_PATH}/LLM_finetune
+template: qwen3
+cutoff_len: 4096
+preprocessing_num_workers: 32
+
+### Output
+tokenized_path: ${PROJECT_PATH}/dataset/tokenized_dataset/asr_correction
+output_dir: ${PROJECT_PATH}/dataset/tokenized_dataset/asr_correction
+overwrite_output_dir: true
+overwrite_cache: true

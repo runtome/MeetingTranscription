@@ -1,0 +1,15 @@
+### Merge LoRA Adapter Config
+### Usage: llamafactory-cli export yaml/3_merge_adapter.config.yaml
+
+### Model
+model_name_or_path: ${PROJECT_PATH}/model/qwen3-8b
+
+### Adapter
+adapter_name_or_path: ${PROJECT_PATH}/trained_model/qwen3-8b-asr-adapter
+template: qwen3
+finetuning_type: lora
+
+### Export
+export_dir: ${PROJECT_PATH}/trained_model/qwen3-8b-asr-corrector
+export_device: cpu
+export_size: 5

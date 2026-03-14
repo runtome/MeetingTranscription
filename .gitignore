@@ -1,3 +1,7 @@
 *.mp3
 
 transcriptions/
+train/
+val/
+
+LLM_finetune/data/
