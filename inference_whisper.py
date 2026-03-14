@@ -78,7 +78,9 @@ def main():
 
                 text = processor.batch_decode(predicted_ids, skip_special_tokens=True)[0].strip()
                 cleaned_text = clean_thai_asr_keep_space(text)
-                writer.writerow([audio_file.name, cleaned_text])
+                # Fall back to raw text if cleaning produced empty string
+                final_text = cleaned_text if cleaned_text.strip() else text
+                writer.writerow([audio_file.name, final_text])
                 print(f"[{i}/{len(audio_files)}] Transcribing: {audio_file.name}")
                 print(f"  -> raw:     {text}")
                 print(f"  -> cleaned: {cleaned_text}")
