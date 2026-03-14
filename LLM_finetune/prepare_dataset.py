@@ -62,14 +62,19 @@ def main():
         if len(gt_only) > 5:
             print(f"  ... and {len(gt_only) - 5} more")
 
-    # Build alpaca-format dataset
+    # Build alpaca-format dataset, skip empty/null ASR or ground truth
     dataset = []
+    skipped_empty_asr = 0
+    skipped_empty_gt = 0
     for path in sorted(common_keys):
         asr_text = asr_rows[path].strip()
         gt_text = gt_rows[path].strip()
 
-        # Skip empty pairs
-        if not asr_text or not gt_text:
+        if not asr_text:
+            skipped_empty_asr += 1
+            continue
+        if not gt_text:
+            skipped_empty_gt += 1
             continue
 
         dataset.append({
@@ -81,7 +86,10 @@ def main():
     with open(args.output, "w", encoding="utf-8") as f:
         json.dump(dataset, f, ensure_ascii=False, indent=2)
 
-    print(f"\nCreated {len(dataset)} training examples -> {args.output}")
+    print(f"\nMatched pairs: {len(common_keys)}")
+    print(f"Skipped (empty ASR): {skipped_empty_asr}")
+    print(f"Skipped (empty ground truth): {skipped_empty_gt}")
+    print(f"Created {len(dataset)} training examples -> {args.output}")
 
 
 if __name__ == "__main__":
