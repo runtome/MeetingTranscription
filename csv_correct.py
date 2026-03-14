@@ -5,6 +5,7 @@ Aligns paths with sample_submission.csv, fixes empty sentences, and ensures LF l
 Usage:
     python csv_correct.py --input results.csv --output fixed.csv --sample sample_submission.csv
     python csv_correct.py --input results.csv --output fixed.csv --placeholder "."
+    python csv_correct.py --input submission.csv --output fixed.csv --sample test.csv
 """
 
 import argparse
