@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "WebSearch"
+      "WebSearch",
+      "Bash(sed:*)",
+      "Bash(python3:*)",
+      "Bash(head:*)",
+      "Bash(ls:*)",
+      "Bash(wc:*)",
+      "Bash(cd:*)"
     ]
   }
 }
