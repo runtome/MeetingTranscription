@@ -1,5 +1,5 @@
 ### model
-model_name_or_path: ${PROJECT_PATH}/model/qwen3-4b
+model_name_or_path: Qwen/Qwen3-8B
 # trust_remote_code: true
 
 ### method
@@ -22,7 +22,7 @@ dataset_dir : ${PROJECT_PATH}/script
 tokenized_path: ${PROJECT_PATH}/dataset/tokenized_dataset/asr_correction
 
 ### output
-output_dir: ${PROJECT_PATH}/trained_model/qwen3-4b-asr-adapter/
+output_dir: ${PROJECT_PATH}/trained_model/qwen3-8b-asr-adapter/
 logging_steps: 10
 save_steps: 300
 plot_loss: true

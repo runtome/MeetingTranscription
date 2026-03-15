@@ -4,13 +4,12 @@
 #SBATCH -c 32                                   # Specify processors per task
 #SBATCH --gpus-per-node=1                       # Specify number of gpu
 #SBATCH --ntasks-per-node=1                     # Specify tasks per node
-#SBATCH -t 1:00:00                              # Specify job time limit
+#SBATCH -t 10:00:00			# Specify maximum time limit (hour: minute: second)
+#SBATCH -A zz991010			# Specify project name
 #SBATCH -J pre-tokenizer-asr                    # Specify job name
-#SBATCH -A ltxxxxxx                             # Specify project name
 #SBATCH --output=../logs/pre-tokenized-asr.out  # Output file
-#SBATCH --reservation=thaisc_311
 
-export PROJECT_PATH="" #YOUR PROJECT PATH
+export PROJECT_PATH="/project/zz991000-zdeva/zz991010/MeetingTranscription/LLM/" #YOUR PROJECT PATH
 export CUDA_HOME="/opt/nvidia/hpc_sdk/Linux_x86_64/24.11/cuda/12.6"
 
 export HF_DATASETS_CACHE="$PROJECT_PATH/.cache"
@@ -46,7 +45,7 @@ ml gcc
 ml Mamba
 
 conda deactivate
-conda activate "$PROJECT_PATH/env-list/env"
+conda activate /project/zz991000-zdeva/zz991010/llamafactory
 
 # ===== Resolve config files =====
 envsubst < "$PROJECT_PATH/script/yaml/1_data-process-asr.config.yaml" \
