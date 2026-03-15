@@ -5,3 +5,5 @@ train/
 val/
 
 LLM_finetune/data/
+LLM/datasets/
+LLM/dataset/
