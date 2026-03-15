@@ -8,7 +8,7 @@ do_train: true
 finetuning_type: lora
 lora_rank: 8
 lora_target: all
-deepspeed: ${PROJECT_PATH}/script/deepspeed/ds_z2_config.json  # choices: [ds_z0_config.json, ds_z2_config.json, ds_z3_config.json]
+# deepspeed: ${PROJECT_PATH}/script/deepspeed/ds_z2_config.json  # disabled due to DeepSpeed 0.18.8 lr_scheduler bug; using plain DDP instead
 
 ### dataset
 dataset: asr_correction

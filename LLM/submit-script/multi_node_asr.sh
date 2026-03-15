@@ -20,6 +20,7 @@ export TRANSFORMERS_CACHE=$PROJECT_PATH/.cache
 export HF_DATASETS_CACHE=$PROJECT_PATH/.cache
 export HF_HUB_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
+export DISABLE_VERSION_CHECK=1
 
 
 # LLaMA Factory specific environment variables
