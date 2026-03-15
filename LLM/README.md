@@ -44,7 +44,8 @@ LLM/
 │   ├── 1_prepare-data-asr.sh       # Tokenize dataset
 │   ├── 2_submit_multinode_asr.sh   # Launch multi-node LoRA SFT training
 │   ├── multi_node_asr.sh           # Worker script for distributed training
-│   └── 3_merge_adapter_asr.sh      # Merge LoRA adapter into base model
+│   ├── 3_merge_adapter_asr.sh      # Merge LoRA adapter into base model
+│   └── 4_inference_asr.sh          # Run inference on test set
 │
 ├── notebook/                       # Jupyter notebooks (exploration & evaluation)
 │   ├── data-process_no_run.ipynb
@@ -92,6 +93,9 @@ sbatch 2_submit_multinode_asr.sh
 
 # Step 3: Merge LoRA adapter into base model
 sbatch 3_merge_adapter_asr.sh
+
+# Step 4: Run inference on test set
+sbatch 4_inference_asr.sh
 ```
 
 ### 3. Inference
@@ -99,8 +103,12 @@ sbatch 3_merge_adapter_asr.sh
 Correct raw ASR transcriptions using the fine-tuned model:
 
 ```bash
+# On Lanta HPC
+sbatch 4_inference_asr.sh
+
+# Or run directly
 python inference.py \
-  --model_path ./trained_model/qwen3-4b-asr \
+  --model_path ./trained_model/qwen3-8b-asr \
   --input_csv  ./datasets/test/asr_ouput_test.csv \
   --output_csv ./datasets/test/test_LLM_inferance.csv
 ```
