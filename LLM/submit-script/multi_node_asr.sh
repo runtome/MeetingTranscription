@@ -16,8 +16,10 @@ echo "SLURM_PROCID: $SLURM_PROCID"
 
 # Change this path to your own path
 export LD_LIBRARY_PATH=$PROJECT_PATH/lib:$LD_LIBRARY_PATH
-export TRANSFORMERS_CACHE=$PROJECT_PATH/cache
-export HF_DATASETS_CACHE=$PROJECT_PATH/cache
+export TRANSFORMERS_CACHE=$PROJECT_PATH/.cache
+export HF_DATASETS_CACHE=$PROJECT_PATH/.cache
+export HF_HUB_OFFLINE=1
+export TRANSFORMERS_OFFLINE=1
 
 
 # LLaMA Factory specific environment variables

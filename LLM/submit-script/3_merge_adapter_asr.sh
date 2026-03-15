@@ -23,6 +23,8 @@ conda activate "$PROJECT_PATH/env-list/env"
 export LD_LIBRARY_PATH=$PROJECT_PATH/lib:$LD_LIBRARY_PATH
 export TRANSFORMERS_CACHE=$PROJECT_PATH/.cache
 export HF_DATASETS_CACHE=$PROJECT_PATH/.cache
+export HF_HUB_OFFLINE=1
+export TRANSFORMERS_OFFLINE=1
 export FORCE_TORCHRUN=1
 
 # ===== Resolve config files =====

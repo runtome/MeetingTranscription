@@ -15,6 +15,8 @@ export CUDA_HOME="/opt/nvidia/hpc_sdk/Linux_x86_64/24.11/cuda/12.6"
 export HF_DATASETS_CACHE="$PROJECT_PATH/.cache"
 export HF_HOME="$PROJECT_PATH/.cache"
 export HF_HUB_CACHE="$PROJECT_PATH/.cache"
+export HF_HUB_OFFLINE=1
+export TRANSFORMERS_OFFLINE=1
 
 
 export PATH="$CUDA_HOME/bin:$PATH"
