@@ -5,10 +5,10 @@ ml cuda
 ml gcc
 ml Mamba
 
-export PROJECT_PATH="" #YOUR PROJECT PATH
+export PROJECT_PATH="/project/zz991000-zdeva/zz991010/MeetingTranscription/LLM/" #YOUR PROJECT PATH
 
 conda deactivate
-conda activate "$PROJECT_PATH/env-list/env"
+conda activate /project/zz991000-zdeva/zz991010/llamafactory
 
 echo "User: $(whoami)"
 echo "Hostname: $(hostname)"

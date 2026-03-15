@@ -5,10 +5,9 @@
 #SBATCH --ntasks-per-node=1                 # Specify number of tasks per node
 #SBATCH --gpus-per-node=4                   # Specify total number of GPUs per node
 #SBATCH -t 1:00:00                          # Specify maximum time limit (72 hours)
-#SBATCH -A ltxxxxxx                     # Specify project name
+#SBATCH -A zz991010			# Specify project name
 #SBATCH -J llamafac-asr                     # Specify job name
 #SBATCH --output=../logs/train-asr.out      # Output file
-#SBATCH --reservation=thaisc_311
 
 # Environment setup
 export NCCL_DEBUG=INFO
