@@ -4,7 +4,7 @@
 #SBATCH -c 64                               # Specify processors per task
 #SBATCH --ntasks-per-node=1                 # Specify number of tasks per node
 #SBATCH --gpus-per-node=4                   # Specify total number of GPUs per node
-#SBATCH -t 1:00:00                          # Specify maximum time limit (72 hours)
+#SBATCH -t 20:00:00                          # Specify maximum time limit (72 hours)
 #SBATCH -A zz991010			# Specify project name
 #SBATCH -J llamafac-asr                     # Specify job name
 #SBATCH --output=../logs/train-asr.out      # Output file
