@@ -32,4 +32,4 @@ python "$PROJECT_PATH/inference_pretrained.py" \
     --cache_dir "$PROJECT_PATH/.cache" \
     --input_csv "$PROJECT_PATH/datasets/test/asr_ouput_test.csv" \
     --output_csv "$PROJECT_PATH/datasets/test/test_pretrained_inference.csv" \
-    --max_new_tokens 1024
+    --max_new_tokens 512

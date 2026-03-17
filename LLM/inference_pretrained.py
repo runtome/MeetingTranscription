@@ -52,10 +52,11 @@ def load_model(model_name: str, cache_dir: str | None = None):
     tokenizer = AutoTokenizer.from_pretrained(model_name, cache_dir=cache_dir, local_files_only=True)
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
-        torch_dtype="auto",
+        dtype=torch.bfloat16,
         device_map="auto",
         cache_dir=cache_dir,
         local_files_only=True,
+        attn_implementation="sdpa",
     )
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Device: {device}")
@@ -97,12 +98,13 @@ def postprocess(original: str, corrected: str) -> str:
     return corrected.strip()
 
 
+@torch.inference_mode()
 def inference(
     text: str,
     model,
     tokenizer,
-    max_new_tokens: int = 1024,
-    enable_thinking: bool = True,
+    max_new_tokens: int = 512,
+    enable_thinking: bool = False,
     use_few_shot: bool = True,
 ) -> str:
     """Run inference on a single ASR text and return corrected text."""
@@ -112,7 +114,7 @@ def inference(
         messages,
         tokenize=False,
         add_generation_prompt=True,
-        enable_thinking=True,
+        enable_thinking=enable_thinking,
     )
     model_inputs = tokenizer([prompt], return_tensors="pt").to(model.device)
 
@@ -124,13 +126,16 @@ def inference(
     )
     output_ids = generated_ids[0][len(model_inputs.input_ids[0]) :].tolist()
 
-    # Parse output: strip thinking tokens (151668 = </think>)
-    try:
-        index = len(output_ids) - output_ids[::-1].index(151668)
-    except ValueError:
-        index = 0
+    if enable_thinking:
+        # Parse output: strip thinking tokens (151668 = </think>)
+        try:
+            index = len(output_ids) - output_ids[::-1].index(151668)
+        except ValueError:
+            index = 0
+        content = tokenizer.decode(output_ids[index:], skip_special_tokens=True)
+    else:
+        content = tokenizer.decode(output_ids, skip_special_tokens=True)
 
-    content = tokenizer.decode(output_ids[index:], skip_special_tokens=True).strip("\n")
     return postprocess(text, content.strip())
 
 
@@ -157,14 +162,14 @@ def main():
         default=os.path.join(os.path.dirname(__file__), "datasets", "test", "test_pretrained_inference.csv"),
         help="Output CSV path",
     )
-    parser.add_argument("--max_new_tokens", type=int, default=1024, help="Max new tokens for generation")
-    parser.add_argument("--no_think", action="store_true", help="Disable thinking mode (append /no_think)")
+    parser.add_argument("--max_new_tokens", type=int, default=512, help="Max new tokens for generation")
+    parser.add_argument("--think", action="store_true", help="Enable thinking mode (slower but may improve quality)")
     parser.add_argument("--no_few_shot", action="store_true", help="Skip few-shot examples")
     args = parser.parse_args()
 
     model, tokenizer = load_model(args.model_name, cache_dir=args.cache_dir)
 
-    enable_thinking = not args.no_think
+    enable_thinking = args.think
     use_few_shot = not args.no_few_shot
     print(f"Thinking mode: {'enabled' if enable_thinking else 'disabled'}")
     print(f"Few-shot examples: {'enabled' if use_few_shot else 'disabled'}")
