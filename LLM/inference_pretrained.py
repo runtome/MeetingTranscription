@@ -44,14 +44,18 @@ FEW_SHOT_EXAMPLES = [
 ]
 
 
-def load_model(model_path: str):
-    """Load model and tokenizer."""
-    print(f"Loading model from: {model_path}")
-    tokenizer = AutoTokenizer.from_pretrained(model_path)
+def load_model(model_name: str, cache_dir: str | None = None):
+    """Load model and tokenizer from HF cache."""
+    print(f"Loading model: {model_name}")
+    if cache_dir:
+        print(f"Cache dir: {cache_dir}")
+    tokenizer = AutoTokenizer.from_pretrained(model_name, cache_dir=cache_dir, local_files_only=True)
     model = AutoModelForCausalLM.from_pretrained(
-        model_path,
+        model_name,
         torch_dtype="auto",
         device_map="auto",
+        cache_dir=cache_dir,
+        local_files_only=True,
     )
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Device: {device}")
@@ -133,9 +137,15 @@ def inference(
 def main():
     parser = argparse.ArgumentParser(description="ASR Correction Inference (Pretrained Model)")
     parser.add_argument(
-        "--model_path",
-        required=True,
-        help="Path to base pretrained model directory",
+        "--model_name",
+        default="Qwen/Qwen3-8B",
+        help="HF model name to load from cache (default: Qwen/Qwen3-8B). "
+             "Examples: Qwen/Qwen3-8B, Qwen/Qwen2.5-7B",
+    )
+    parser.add_argument(
+        "--cache_dir",
+        default=None,
+        help="HF cache directory (default: uses HF_HOME/TRANSFORMERS_CACHE env var)",
     )
     parser.add_argument(
         "--input_csv",
@@ -152,7 +162,7 @@ def main():
     parser.add_argument("--no_few_shot", action="store_true", help="Skip few-shot examples")
     args = parser.parse_args()
 
-    model, tokenizer = load_model(args.model_path)
+    model, tokenizer = load_model(args.model_name, cache_dir=args.cache_dir)
 
     enable_thinking = not args.no_think
     use_few_shot = not args.no_few_shot
@@ -179,6 +189,10 @@ def main():
             )
         else:
             corrected = ""
+
+        print(f"\n[{path}]")
+        print(f"  IN:  {sentence}")
+        print(f"  OUT: {corrected}")
 
         results.append({"path": path, "sentence": sentence, "corrected_sentence": corrected})
 
