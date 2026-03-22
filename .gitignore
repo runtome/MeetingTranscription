@@ -6,4 +6,5 @@ val/
 
 LLM_finetune/data/
 LLM/datasets/
+results/
 LLM/dataset/

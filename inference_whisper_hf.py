@@ -56,6 +56,8 @@ def main():
     parser.add_argument("--test_dir", default="test", help="Directory containing audio files")
     parser.add_argument("--output", default="results_hg.csv", help="Output CSV file path")
     parser.add_argument("--language", default="th", help="Language code (default: th)")
+    parser.add_argument("--num_beams", type=int, default=5, help="Beam search width (default: 5, use 1 for greedy)")
+    parser.add_argument("--clean", action="store_true", help="Enable ASR text cleaning (default: off)")
     args = parser.parse_args()
 
     test_dir = Path(args.test_dir)
@@ -83,14 +85,20 @@ def main():
                 inputs = processor(audio, sampling_rate=16000, return_tensors="pt").input_features.to(device, dtype=dtype)
 
                 with torch.no_grad():
-                    predicted_ids = model.generate(inputs, language=args.language, task="transcribe")
+                    predicted_ids = model.generate(
+                        inputs,
+                        language=args.language,
+                        task="transcribe",
+                        num_beams=args.num_beams,
+                    )
 
                 text = processor.batch_decode(predicted_ids, skip_special_tokens=True)[0].strip()
-                cleaned_text = clean_thai_asr_keep_space(text)
-                writer.writerow([audio_file.name, cleaned_text])
+                output_text = clean_thai_asr_keep_space(text) if args.clean else text
+                writer.writerow([audio_file.name, output_text])
                 print(f"[{i}/{len(audio_files)}] Transcribing: {audio_file.name}")
                 print(f"  -> raw:     {text}")
-                print(f"  -> cleaned: {cleaned_text}")
+                if args.clean:
+                    print(f"  -> cleaned: {output_text}")
             except Exception as e:
                 print(f"[{i}/{len(audio_files)}] Transcribing: {audio_file.name}")
                 print(f"  -> ERROR: {e}")
