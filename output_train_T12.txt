@@ -1,0 +1,23 @@
+Loading processor and model: microsoft/VibeVoice-ASR
+Traceback (most recent call last):
+  File "/lustrefs/disk/project/zz991000-zdeva/zz991010/MeetingTranscription/finetune_whisper.py", line 213, in <module>
+    main()
+  File "/lustrefs/disk/project/zz991000-zdeva/zz991010/MeetingTranscription/finetune_whisper.py", line 151, in main
+    processor = WhisperProcessor.from_pretrained(args.model_name)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/project/zz991000-zdeva/zz991010/env/lib/python3.12/site-packages/transformers/processing_utils.py", line 1403, in from_pretrained
+    args = cls._get_arguments_from_pretrained(pretrained_model_name_or_path, processor_dict, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/project/zz991000-zdeva/zz991010/env/lib/python3.12/site-packages/transformers/processing_utils.py", line 1524, in _get_arguments_from_pretrained
+    sub_processor = auto_processor_class.from_pretrained(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/project/zz991000-zdeva/zz991010/env/lib/python3.12/site-packages/transformers/models/auto/feature_extraction_auto.py", line 317, in from_pretrained
+    config_dict, _ = FeatureExtractionMixin.get_feature_extractor_dict(pretrained_model_name_or_path, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/project/zz991000-zdeva/zz991010/env/lib/python3.12/site-packages/transformers/feature_extraction_utils.py", line 529, in get_feature_extractor_dict
+    raise OSError(
+OSError: Can't load feature extractor for 'microsoft/VibeVoice-ASR'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure 'microsoft/VibeVoice-ASR' is the correct path to a directory containing a preprocessor_config.json file
+srun: error: lanta-g-062: task 0: Exited with exit code 1
+srun: Terminating StepId=4859335.0
+Job start at Thu Mar 19 11:26:58 PM +07 2026
+Job end   at Thu Mar 19 11:27:09 PM +07 2026

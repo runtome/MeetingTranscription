@@ -1,0 +1,307 @@
+Loading model from ./whisper-thai-finetuned-t9-0/checkpoint-6500...
+Loading weights:   0%|          | 0/1259 [00:00<?, ?it/s]Loading weights:   2%|▏         | 30/1259 [00:00<00:04, 279.29it/s]Loading weights:   5%|▍         | 58/1259 [00:00<00:08, 142.44it/s]Loading weights:   6%|▌         | 76/1259 [00:00<00:09, 123.60it/s]Loading weights:   7%|▋         | 91/1259 [00:00<00:12, 93.50it/s] Loading weights:   8%|▊         | 102/1259 [00:01<00:15, 76.08it/s]Loading weights:   9%|▉         | 117/1259 [00:01<00:13, 81.60it/s]Loading weights:  10%|█         | 132/1259 [00:01<00:12, 92.54it/s]Loading weights:  12%|█▏        | 148/1259 [00:01<00:10, 104.80it/s]Loading weights:  14%|█▎        | 171/1259 [00:01<00:08, 127.70it/s]Loading weights:  15%|█▌        | 194/1259 [00:01<00:07, 139.45it/s]Loading weights:  18%|█▊        | 231/1259 [00:01<00:05, 193.14it/s]Loading weights:  20%|██        | 253/1259 [00:01<00:05, 174.91it/s]Loading weights:  22%|██▏       | 273/1259 [00:02<00:06, 160.79it/s]Loading weights:  23%|██▎       | 294/1259 [00:02<00:05, 161.78it/s]Loading weights:  25%|██▌       | 319/1259 [00:02<00:05, 168.18it/s]Loading weights:  27%|██▋       | 346/1259 [00:02<00:04, 191.91it/s]Loading weights:  29%|██▉       | 367/1259 [00:02<00:04, 178.83it/s]Loading weights:  31%|███       | 386/1259 [00:02<00:05, 158.78it/s]Loading weights:  33%|███▎      | 414/1259 [00:02<00:04, 180.33it/s]Loading weights:  35%|███▍      | 437/1259 [00:02<00:04, 191.58it/s]Loading weights:  36%|███▋      | 457/1259 [00:03<00:04, 190.44it/s]Loading weights:  38%|███▊      | 483/1259 [00:03<00:04, 190.17it/s]Loading weights:  40%|████      | 509/1259 [00:03<00:03, 200.00it/s]Loading weights:  42%|████▏     | 530/1259 [00:03<00:03, 200.14it/s]Loading weights:  44%|████▍     | 551/1259 [00:03<00:03, 195.56it/s]Loading weights:  46%|████▌     | 573/1259 [00:03<00:03, 191.67it/s]Loading weights:  48%|████▊     | 606/1259 [00:03<00:03, 200.21it/s]Loading weights:  51%|█████▏    | 646/1259 [00:03<00:02, 225.38it/s]Loading weights:  53%|█████▎    | 669/1259 [00:04<00:02, 202.60it/s]Loading weights:  55%|█████▍    | 691/1259 [00:04<00:02, 192.05it/s]Loading weights:  57%|█████▋    | 718/1259 [00:04<00:02, 210.74it/s]Loading weights:  59%|█████▉    | 740/1259 [00:04<00:02, 201.85it/s]Loading weights:  60%|██████    | 761/1259 [00:04<00:02, 195.95it/s]Loading weights:  62%|██████▏   | 786/1259 [00:04<00:02, 205.35it/s]Loading weights:  64%|██████▍   | 807/1259 [00:04<00:02, 206.54it/s]Loading weights:  66%|██████▌   | 828/1259 [00:04<00:02, 175.66it/s]Loading weights:  67%|██████▋   | 847/1259 [00:05<00:02, 161.44it/s]Loading weights:  71%|███████   | 890/1259 [00:05<00:01, 225.10it/s]Loading weights:  74%|███████▎  | 926/1259 [00:05<00:01, 258.88it/s]Loading weights:  77%|███████▋  | 965/1259 [00:05<00:01, 266.36it/s]Loading weights:  80%|███████▉  | 1005/1259 [00:05<00:00, 293.33it/s]Loading weights:  82%|████████▏ | 1036/1259 [00:05<00:00, 279.91it/s]Loading weights:  85%|████████▌ | 1076/1259 [00:05<00:00, 299.65it/s]Loading weights:  88%|████████▊ | 1107/1259 [00:05<00:00, 298.79it/s]Loading weights:  90%|█████████ | 1138/1259 [00:06<00:00, 299.14it/s]Loading weights:  93%|█████████▎| 1175/1259 [00:06<00:00, 306.68it/s]Loading weights:  97%|█████████▋| 1215/1259 [00:06<00:00, 325.40it/s]Loading weights: 100%|██████████| 1259/1259 [00:06<00:00, 200.08it/s]
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+A custom logits processor of type <class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'> has been passed to `.generate()`, but it was also created in `.generate()`, given its parameterization. The custom <class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'> will take precedence. Please check the docstring of <class 'transformers.generation.logits_process.SuppressTokensLogitsProcessor'> to see related `.generate()` flags.
+A custom logits processor of type <class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'> has been passed to `.generate()`, but it was also created in `.generate()`, given its parameterization. The custom <class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'> will take precedence. Please check the docstring of <class 'transformers.generation.logits_process.SuppressTokensAtBeginLogitsProcessor'> to see related `.generate()` flags.
+Using device: cuda
+Found 3000 audio files in test
+[1/3000] Transcribing: LOTUSDISHack2026_000001.mp3
+  -> raw:     
+  -> cleaned: 
+[2/3000] Transcribing: LOTUSDISHack2026_000002.mp3
+  -> raw:     
+  -> cleaned: 
+[3/3000] Transcribing: LOTUSDISHack2026_000003.mp3
+  -> raw:     
+  -> cleaned: 
+[4/3000] Transcribing: LOTUSDISHack2026_000004.mp3
+  -> raw:     
+  -> cleaned: 
+[5/3000] Transcribing: LOTUSDISHack2026_000005.mp3
+  -> raw:     
+  -> cleaned: 
+[6/3000] Transcribing: LOTUSDISHack2026_000006.mp3
+  -> raw:     
+  -> cleaned: 
+[7/3000] Transcribing: LOTUSDISHack2026_000007.mp3
+  -> raw:     
+  -> cleaned: 
+[8/3000] Transcribing: LOTUSDISHack2026_000008.mp3
+  -> raw:     
+  -> cleaned: 
+[9/3000] Transcribing: LOTUSDISHack2026_000009.mp3
+  -> raw:     
+  -> cleaned: 
+[10/3000] Transcribing: LOTUSDISHack2026_000010.mp3
+  -> raw:     
+  -> cleaned: 
+[11/3000] Transcribing: LOTUSDISHack2026_000011.mp3
+  -> raw:     
+  -> cleaned: 
+[12/3000] Transcribing: LOTUSDISHack2026_000012.mp3
+  -> raw:     
+  -> cleaned: 
+[13/3000] Transcribing: LOTUSDISHack2026_000013.mp3
+  -> raw:     
+  -> cleaned: 
+[14/3000] Transcribing: LOTUSDISHack2026_000014.mp3
+  -> raw:     
+  -> cleaned: 
+[15/3000] Transcribing: LOTUSDISHack2026_000015.mp3
+  -> raw:     
+  -> cleaned: 
+[16/3000] Transcribing: LOTUSDISHack2026_000016.mp3
+  -> raw:     
+  -> cleaned: 
+[17/3000] Transcribing: LOTUSDISHack2026_000017.mp3
+  -> raw:     
+  -> cleaned: 
+[18/3000] Transcribing: LOTUSDISHack2026_000018.mp3
+  -> raw:     
+  -> cleaned: 
+[19/3000] Transcribing: LOTUSDISHack2026_000019.mp3
+  -> raw:     
+  -> cleaned: 
+[20/3000] Transcribing: LOTUSDISHack2026_000020.mp3
+  -> raw:     
+  -> cleaned: 
+[21/3000] Transcribing: LOTUSDISHack2026_000021.mp3
+  -> raw:     
+  -> cleaned: 
+[22/3000] Transcribing: LOTUSDISHack2026_000022.mp3
+  -> raw:     
+  -> cleaned: 
+[23/3000] Transcribing: LOTUSDISHack2026_000023.mp3
+  -> raw:     
+  -> cleaned: 
+[24/3000] Transcribing: LOTUSDISHack2026_000024.mp3
+  -> raw:     
+  -> cleaned: 
+[25/3000] Transcribing: LOTUSDISHack2026_000025.mp3
+  -> raw:     
+  -> cleaned: 
+[26/3000] Transcribing: LOTUSDISHack2026_000026.mp3
+  -> raw:     
+  -> cleaned: 
+[27/3000] Transcribing: LOTUSDISHack2026_000027.mp3
+  -> raw:     
+  -> cleaned: 
+[28/3000] Transcribing: LOTUSDISHack2026_000028.mp3
+  -> raw:     
+  -> cleaned: 
+[29/3000] Transcribing: LOTUSDISHack2026_000029.mp3
+  -> raw:     
+  -> cleaned: 
+[30/3000] Transcribing: LOTUSDISHack2026_000030.mp3
+  -> raw:     
+  -> cleaned: 
+[31/3000] Transcribing: LOTUSDISHack2026_000031.mp3
+  -> raw:     
+  -> cleaned: 
+[32/3000] Transcribing: LOTUSDISHack2026_000032.mp3
+  -> raw:     
+  -> cleaned: 
+[33/3000] Transcribing: LOTUSDISHack2026_000033.mp3
+  -> raw:     
+  -> cleaned: 
+[34/3000] Transcribing: LOTUSDISHack2026_000034.mp3
+  -> raw:     
+  -> cleaned: 
+[35/3000] Transcribing: LOTUSDISHack2026_000035.mp3
+  -> raw:     
+  -> cleaned: 
+[36/3000] Transcribing: LOTUSDISHack2026_000036.mp3
+  -> raw:     
+  -> cleaned: 
+[37/3000] Transcribing: LOTUSDISHack2026_000037.mp3
+  -> raw:     
+  -> cleaned: 
+[38/3000] Transcribing: LOTUSDISHack2026_000038.mp3
+  -> raw:     
+  -> cleaned: 
+[39/3000] Transcribing: LOTUSDISHack2026_000039.mp3
+  -> raw:     
+  -> cleaned: 
+[40/3000] Transcribing: LOTUSDISHack2026_000040.mp3
+  -> raw:     
+  -> cleaned: 
+[41/3000] Transcribing: LOTUSDISHack2026_000041.mp3
+  -> raw:     
+  -> cleaned: 
+[42/3000] Transcribing: LOTUSDISHack2026_000042.mp3
+  -> raw:     
+  -> cleaned: 
+[43/3000] Transcribing: LOTUSDISHack2026_000043.mp3
+  -> raw:     
+  -> cleaned: 
+[44/3000] Transcribing: LOTUSDISHack2026_000044.mp3
+  -> raw:     
+  -> cleaned: 
+[45/3000] Transcribing: LOTUSDISHack2026_000045.mp3
+  -> raw:     
+  -> cleaned: 
+[46/3000] Transcribing: LOTUSDISHack2026_000046.mp3
+  -> raw:     
+  -> cleaned: 
+[47/3000] Transcribing: LOTUSDISHack2026_000047.mp3
+  -> raw:     
+  -> cleaned: 
+[48/3000] Transcribing: LOTUSDISHack2026_000048.mp3
+  -> raw:     
+  -> cleaned: 
+[49/3000] Transcribing: LOTUSDISHack2026_000049.mp3
+  -> raw:     
+  -> cleaned: 
+[50/3000] Transcribing: LOTUSDISHack2026_000050.mp3
+  -> raw:     
+  -> cleaned: 
+[51/3000] Transcribing: LOTUSDISHack2026_000051.mp3
+  -> raw:     
+  -> cleaned: 
+[52/3000] Transcribing: LOTUSDISHack2026_000052.mp3
+  -> raw:     
+  -> cleaned: 
+[53/3000] Transcribing: LOTUSDISHack2026_000053.mp3
+  -> raw:     
+  -> cleaned: 
+[54/3000] Transcribing: LOTUSDISHack2026_000054.mp3
+  -> raw:     
+  -> cleaned: 
+[55/3000] Transcribing: LOTUSDISHack2026_000055.mp3
+  -> raw:     
+  -> cleaned: 
+[56/3000] Transcribing: LOTUSDISHack2026_000056.mp3
+  -> raw:     
+  -> cleaned: 
+[57/3000] Transcribing: LOTUSDISHack2026_000057.mp3
+  -> raw:     
+  -> cleaned: 
+[58/3000] Transcribing: LOTUSDISHack2026_000058.mp3
+  -> raw:     
+  -> cleaned: 
+[59/3000] Transcribing: LOTUSDISHack2026_000059.mp3
+  -> raw:     
+  -> cleaned: 
+[60/3000] Transcribing: LOTUSDISHack2026_000060.mp3
+  -> raw:     
+  -> cleaned: 
+[61/3000] Transcribing: LOTUSDISHack2026_000061.mp3
+  -> raw:     
+  -> cleaned: 
+[62/3000] Transcribing: LOTUSDISHack2026_000062.mp3
+  -> raw:     
+  -> cleaned: 
+[63/3000] Transcribing: LOTUSDISHack2026_000063.mp3
+  -> raw:     
+  -> cleaned: 
+[64/3000] Transcribing: LOTUSDISHack2026_000064.mp3
+  -> raw:     
+  -> cleaned: 
+[65/3000] Transcribing: LOTUSDISHack2026_000065.mp3
+  -> raw:     
+  -> cleaned: 
+[66/3000] Transcribing: LOTUSDISHack2026_000066.mp3
+  -> raw:     
+  -> cleaned: 
+[67/3000] Transcribing: LOTUSDISHack2026_000067.mp3
+  -> raw:     
+  -> cleaned: 
+[68/3000] Transcribing: LOTUSDISHack2026_000068.mp3
+  -> raw:     
+  -> cleaned: 
+[69/3000] Transcribing: LOTUSDISHack2026_000069.mp3
+  -> raw:     
+  -> cleaned: 
+[70/3000] Transcribing: LOTUSDISHack2026_000070.mp3
+  -> raw:     
+  -> cleaned: 
+[71/3000] Transcribing: LOTUSDISHack2026_000071.mp3
+  -> raw:     
+  -> cleaned: 
+[72/3000] Transcribing: LOTUSDISHack2026_000072.mp3
+  -> raw:     
+  -> cleaned: 
+[73/3000] Transcribing: LOTUSDISHack2026_000073.mp3
+  -> raw:     
+  -> cleaned: 
+[74/3000] Transcribing: LOTUSDISHack2026_000074.mp3
+  -> raw:     
+  -> cleaned: 
+[75/3000] Transcribing: LOTUSDISHack2026_000075.mp3
+  -> raw:     
+  -> cleaned: 
+[76/3000] Transcribing: LOTUSDISHack2026_000076.mp3
+  -> raw:     
+  -> cleaned: 
+[77/3000] Transcribing: LOTUSDISHack2026_000077.mp3
+  -> raw:     
+  -> cleaned: 
+[78/3000] Transcribing: LOTUSDISHack2026_000078.mp3
+  -> raw:     
+  -> cleaned: 
+[79/3000] Transcribing: LOTUSDISHack2026_000079.mp3
+  -> raw:     
+  -> cleaned: 
+[80/3000] Transcribing: LOTUSDISHack2026_000080.mp3
+  -> raw:     
+  -> cleaned: 
+[81/3000] Transcribing: LOTUSDISHack2026_000081.mp3
+  -> raw:     
+  -> cleaned: 
+[82/3000] Transcribing: LOTUSDISHack2026_000082.mp3
+  -> raw:     
+  -> cleaned: 
+[83/3000] Transcribing: LOTUSDISHack2026_000083.mp3
+  -> raw:     
+  -> cleaned: 
+[84/3000] Transcribing: LOTUSDISHack2026_000084.mp3
+  -> raw:     
+  -> cleaned: 
+[85/3000] Transcribing: LOTUSDISHack2026_000085.mp3
+  -> raw:     
+  -> cleaned: 
+[86/3000] Transcribing: LOTUSDISHack2026_000086.mp3
+  -> raw:     
+  -> cleaned: 
+[87/3000] Transcribing: LOTUSDISHack2026_000087.mp3
+  -> raw:     
+  -> cleaned: 
+[88/3000] Transcribing: LOTUSDISHack2026_000088.mp3
+  -> raw:     
+  -> cleaned: 
+[89/3000] Transcribing: LOTUSDISHack2026_000089.mp3
+  -> raw:     
+  -> cleaned: 
+[90/3000] Transcribing: LOTUSDISHack2026_000090.mp3
+  -> raw:     
+  -> cleaned: 
+[91/3000] Transcribing: LOTUSDISHack2026_000091.mp3
+  -> raw:     
+  -> cleaned: 
+[92/3000] Transcribing: LOTUSDISHack2026_000092.mp3
+  -> raw:     
+  -> cleaned: 
+[93/3000] Transcribing: LOTUSDISHack2026_000093.mp3
+  -> raw:     
+  -> cleaned: 
+[94/3000] Transcribing: LOTUSDISHack2026_000094.mp3
+  -> raw:     
+  -> cleaned: 
+[95/3000] Transcribing: LOTUSDISHack2026_000095.mp3
+  -> raw:     
+  -> cleaned: 
+[96/3000] Transcribing: LOTUSDISHack2026_000096.mp3
+  -> raw:     
+  -> cleaned: 
+[97/3000] Transcribing: LOTUSDISHack2026_000097.mp3
+  -> raw:     
+  -> cleaned: 
+[98/3000] Transcribing: LOTUSDISHack2026_000098.mp3
+  -> raw:     
+  -> cleaned: 
+[99/3000] Transcribing: LOTUSDISHack2026_000099.mp3
+  -> raw:     
+  -> cleaned: 
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 4842918.0 ON lanta-g-001 CANCELLED AT 2026-03-17T09:52:00 ***
+slurmstepd: error: *** JOB 4842918 ON lanta-g-001 CANCELLED AT 2026-03-17T09:52:00 ***
