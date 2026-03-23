@@ -10,7 +10,9 @@
       "Bash(cd:*)",
       "mcp__claude_ai_Hugging_Face__hub_repo_details",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(python -c \"import ast; ast.parse\\(open\\(''finetune_whisper.py''\\).read\\(\\)\\); print\\(''finetune OK''\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\(''inference_whisper_hf.py''\\).read\\(\\)\\); print\\(''inference OK''\\)\")"
     ]
   }
 }

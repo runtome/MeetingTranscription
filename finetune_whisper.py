@@ -8,8 +8,11 @@ Usage:
     python finetune_whisper.py
     python finetune_whisper.py --model_name openai/whisper-medium --batch_size 4 --epochs 5
 
-    # Recommended for typhoon-whisper-large-v3:
-    python finetune_whisper.py --model_name typhoon-ai/typhoon-whisper-large-v3 --epochs 7 --learning_rate 5e-6 --augment
+    # Recommended for typhoon-whisper-large-v3 (freeze encoder):
+    python finetune_whisper.py --model_name typhoon-ai/typhoon-whisper-large-v3 --epochs 10 --learning_rate 5e-6 --augment --freeze_encoder
+
+    # Alternative: differential LR (encoder 10x slower than decoder):
+    python finetune_whisper.py --model_name typhoon-ai/typhoon-whisper-large-v3 --epochs 10 --learning_rate 5e-6 --augment --encoder_lr_factor 0.1
 """
 
 import argparse
@@ -61,6 +64,14 @@ def main():
     parser.add_argument("--augment", action="store_true", help="Enable data augmentation (speed perturbation + spec augment)")
     parser.add_argument("--save_total_limit", type=int, default=3, help="Max checkpoints to keep (default: 3)")
     parser.add_argument("--early_stopping_patience", type=int, default=5, help="Early stopping patience in eval steps (default: 5)")
+    parser.add_argument(
+        "--freeze_encoder", action="store_true",
+        help="Freeze encoder weights (recommended for pre-trained Thai models like typhoon-whisper)"
+    )
+    parser.add_argument(
+        "--encoder_lr_factor", type=float, default=0.1,
+        help="Multiply encoder LR by this factor vs decoder (default: 0.1, only used when --freeze_encoder is NOT set)"
+    )
     args = parser.parse_args()
 
     import csv
@@ -195,6 +206,11 @@ def main():
     model.generation_config.task = "transcribe"
     model.generation_config.forced_decoder_ids = None
 
+    # Freeze encoder if requested (recommended for pre-trained Thai models)
+    if args.freeze_encoder:
+        model.freeze_encoder()
+        print("Encoder frozen — only decoder will be trained")
+
     print("Loading datasets...")
     train_dataset = ThaiSpeechDataset(args.train_csv, args.train_audio_dir, processor, augment=args.augment)
     val_dataset = ThaiSpeechDataset(args.val_csv, args.val_audio_dir, processor, augment=False)
@@ -235,6 +251,20 @@ def main():
     if args.early_stopping_patience > 0:
         callbacks.append(EarlyStoppingCallback(early_stopping_patience=args.early_stopping_patience))
 
+    # Use differential LR: lower LR for encoder, full LR for decoder
+    optimizers = (None, None)
+    if not args.freeze_encoder and args.encoder_lr_factor < 1.0:
+        from torch.optim import AdamW as TorchAdamW
+        encoder_params = [p for n, p in model.named_parameters() if "encoder" in n and p.requires_grad]
+        decoder_params = [p for n, p in model.named_parameters() if "encoder" not in n and p.requires_grad]
+        optimizer = TorchAdamW([
+            {"params": encoder_params, "lr": args.learning_rate * args.encoder_lr_factor},
+            {"params": decoder_params, "lr": args.learning_rate},
+        ], weight_decay=args.weight_decay)
+        optimizers = (optimizer, None)  # let trainer handle scheduler
+        enc_lr = args.learning_rate * args.encoder_lr_factor
+        print(f"Differential LR: encoder={enc_lr:.1e}, decoder={args.learning_rate:.1e}")
+
     trainer = Seq2SeqTrainer(
         model=model,
         args=training_args,
@@ -244,6 +274,7 @@ def main():
         compute_metrics=compute_metrics,
         processing_class=processor.feature_extractor,
         callbacks=callbacks,
+        optimizers=optimizers,
     )
 
     print("Starting training...")

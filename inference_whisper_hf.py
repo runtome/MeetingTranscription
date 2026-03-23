@@ -57,6 +57,8 @@ def main():
     parser.add_argument("--output", default="results_hg.csv", help="Output CSV file path")
     parser.add_argument("--language", default="th", help="Language code (default: th)")
     parser.add_argument("--num_beams", type=int, default=5, help="Beam search width (default: 5, use 1 for greedy)")
+    parser.add_argument("--repetition_penalty", type=float, default=1.2, help="Repetition penalty (default: 1.2, 1.0=off)")
+    parser.add_argument("--no_repeat_ngram_size", type=int, default=4, help="Block repeating n-grams of this size (default: 4, 0=off)")
     parser.add_argument("--clean", action="store_true", help="Enable ASR text cleaning (default: off)")
     args = parser.parse_args()
 
@@ -85,12 +87,16 @@ def main():
                 inputs = processor(audio, sampling_rate=16000, return_tensors="pt").input_features.to(device, dtype=dtype)
 
                 with torch.no_grad():
-                    predicted_ids = model.generate(
-                        inputs,
+                    gen_kwargs = dict(
                         language=args.language,
                         task="transcribe",
                         num_beams=args.num_beams,
                     )
+                    if args.repetition_penalty != 1.0:
+                        gen_kwargs["repetition_penalty"] = args.repetition_penalty
+                    if args.no_repeat_ngram_size > 0:
+                        gen_kwargs["no_repeat_ngram_size"] = args.no_repeat_ngram_size
+                    predicted_ids = model.generate(inputs, **gen_kwargs)
 
                 text = processor.batch_decode(predicted_ids, skip_special_tokens=True)[0].strip()
                 output_text = clean_thai_asr_keep_space(text) if args.clean else text
