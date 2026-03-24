@@ -8,11 +8,11 @@ Usage:
     python finetune_whisper.py
     python finetune_whisper.py --model_name openai/whisper-medium --batch_size 4 --epochs 5
 
-    # Recommended for typhoon-whisper-large-v3 (freeze encoder):
-    python finetune_whisper.py --model_name typhoon-ai/typhoon-whisper-large-v3 --epochs 10 --learning_rate 5e-6 --augment --freeze_encoder
+    # T13 recommended: T6 recipe + augmentation (1e-5 LR proven best for typhoon)
+    python finetune_whisper.py --model_name typhoon-ai/typhoon-whisper-large-v3 --epochs 10 --learning_rate 1e-5 --augment --encoder_lr_factor 1.0
 
-    # Alternative: differential LR (encoder 10x slower than decoder):
-    python finetune_whisper.py --model_name typhoon-ai/typhoon-whisper-large-v3 --epochs 10 --learning_rate 5e-6 --augment --encoder_lr_factor 0.1
+    # Optional: freeze encoder (only decoder trains)
+    python finetune_whisper.py --model_name typhoon-ai/typhoon-whisper-large-v3 --epochs 10 --learning_rate 1e-5 --augment --freeze_encoder
 """
 
 import argparse
@@ -48,7 +48,7 @@ def main():
     )
     parser.add_argument("--epochs", type=int, default=3, help="Number of training epochs (default: 3)")
     parser.add_argument("--batch_size", type=int, default=8, help="Per-device batch size (default: 8)")
-    parser.add_argument("--learning_rate", type=float, default=5e-6, help="Learning rate (default: 5e-6)")
+    parser.add_argument("--learning_rate", type=float, default=1e-5, help="Learning rate (default: 1e-5)")
     parser.add_argument("--warmup_steps", type=int, default=500, help="Warmup steps (default: 500)")
     parser.add_argument("--save_steps", type=int, default=200, help="Save checkpoint every N steps (default: 200)")
     parser.add_argument("--eval_steps", type=int, default=200, help="Evaluate every N steps (default: 200)")
@@ -69,8 +69,8 @@ def main():
         help="Freeze encoder weights (recommended for pre-trained Thai models like typhoon-whisper)"
     )
     parser.add_argument(
-        "--encoder_lr_factor", type=float, default=0.1,
-        help="Multiply encoder LR by this factor vs decoder (default: 0.1, only used when --freeze_encoder is NOT set)"
+        "--encoder_lr_factor", type=float, default=1.0,
+        help="Multiply encoder LR by this factor vs decoder (default: 1.0=same LR, use <1.0 for differential LR)"
     )
     args = parser.parse_args()
 

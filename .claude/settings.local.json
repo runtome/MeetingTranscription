@@ -12,7 +12,11 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(python -c \"import ast; ast.parse\\(open\\(''finetune_whisper.py''\\).read\\(\\)\\); print\\(''finetune OK''\\)\")",
-      "Bash(python -c \"import ast; ast.parse\\(open\\(''inference_whisper_hf.py''\\).read\\(\\)\\); print\\(''inference OK''\\)\")"
+      "Bash(python -c \"import ast; ast.parse\\(open\\(''inference_whisper_hf.py''\\).read\\(\\)\\); print\\(''inference OK''\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\(''LLM/inference.py''\\).read\\(\\)\\); print\\(''LLM inference OK''\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\(''LLM/prepare_asr_dataset.py''\\).read\\(\\)\\); print\\(''LLM prepare OK''\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\(''LLM/inference.py'', encoding=''utf-8''\\).read\\(\\)\\); print\\(''LLM inference OK''\\)\")",
+      "Bash(python -c \"import ast; ast.parse\\(open\\(''LLM/prepare_asr_dataset.py'', encoding=''utf-8''\\).read\\(\\)\\); print\\(''LLM prepare OK''\\)\")"
     ]
   }
 }

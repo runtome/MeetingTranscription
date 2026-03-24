@@ -6,6 +6,7 @@ Loads a fine-tuned model and corrects raw ASR transcriptions.
 
 import argparse
 import os
+import re
 
 import pandas as pd
 import torch
@@ -14,9 +15,15 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
 SYSTEM_PROMPT = (
-    "You are a Thai ASR correction assistant. "
-    "Given a raw ASR transcription that may contain errors or hallucinations, "
-    "output the corrected transcription."
+    "คุณคือผู้ช่วยแก้ไขข้อความจากระบบ ASR (Automatic Speech Recognition) ภาษาไทย\n"
+    "กฎการแก้ไข:\n"
+    "1. ลบวลีที่ซ้ำกัน 3 ครั้งขึ้นไปติดต่อกัน (hallucination จาก ASR)\n"
+    "2. ลบเนื้อหาที่ไม่เกี่ยวข้องหรือไม่สมเหตุสมผลที่ ASR สร้างขึ้นมาเอง\n"
+    "3. แก้คำไทยที่ผิดจากเสียงคล้ายกัน โดยดูจากบริบท เช่น อิสลาก→อิสระ, แว่นน้ำ→ว่ายน้ำ\n"
+    "4. แก้คำภาษาอังกฤษที่สะกดผิดหรือถูกตัดคำ เช่น Outdoo→Outdoor, Indoo→Indoor, Wave→Microwave (ดูจากบริบท)\n"
+    "5. ห้ามเพิ่มหรือลบเนื้อหา ห้ามเรียบเรียงใหม่ แก้เฉพาะข้อผิดพลาดเท่านั้น\n"
+    "6. คงคำอุทานไว้ เช่น ครับ ค่ะ อืม เออ อ่า\n"
+    "7. ตอบเฉพาะข้อความที่แก้ไขแล้ว ไม่ต้องอธิบาย"
 )
 
 
@@ -33,6 +40,26 @@ def load_model(model_path: str):
     print(f"Device: {device}")
     print(f"Model loaded: {model.config._name_or_path}")
     return model, tokenizer
+
+
+def postprocess(original: str, corrected: str) -> str:
+    """Guard against LLM making things worse."""
+    if not corrected.strip():
+        return original
+
+    # Strip any prefix the model might prepend
+    corrected = re.sub(r"^(?:corrected|แก้ไข|ข้อความที่แก้ไข)\s*[:：]\s*", "", corrected, flags=re.IGNORECASE)
+
+    # Collapse long repeated sequences (hallucination from LLM)
+    corrected = re.sub(r"(.{10,}?)\1{2,}", r"\1", corrected)
+
+    # Length guard: if corrected is >1.5x or <0.3x original length, keep original
+    if len(original) > 0:
+        ratio = len(corrected) / len(original)
+        if ratio > 1.5 or ratio < 0.3:
+            return original
+
+    return corrected.strip()
 
 
 def inference(text: str, model, tokenizer, max_new_tokens: int = 512) -> str:
@@ -54,6 +81,7 @@ def inference(text: str, model, tokenizer, max_new_tokens: int = 512) -> str:
         **model_inputs,
         max_new_tokens=max_new_tokens,
         temperature=0.001,
+        repetition_penalty=1.1,
     )
     output_ids = generated_ids[0][len(model_inputs.input_ids[0]) :].tolist()
 
@@ -64,7 +92,7 @@ def inference(text: str, model, tokenizer, max_new_tokens: int = 512) -> str:
         index = 0
 
     content = tokenizer.decode(output_ids[index:], skip_special_tokens=True).strip("\n")
-    return content.strip()
+    return postprocess(text, content.strip())
 
 
 def main():
