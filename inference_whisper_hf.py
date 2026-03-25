@@ -56,9 +56,9 @@ def main():
     parser.add_argument("--test_dir", default="test", help="Directory containing audio files")
     parser.add_argument("--output", default="results_hg.csv", help="Output CSV file path")
     parser.add_argument("--language", default="th", help="Language code (default: th)")
-    parser.add_argument("--num_beams", type=int, default=5, help="Beam search width (default: 5, use 1 for greedy)")
-    parser.add_argument("--repetition_penalty", type=float, default=1.2, help="Repetition penalty (default: 1.2, 1.0=off)")
-    parser.add_argument("--no_repeat_ngram_size", type=int, default=4, help="Block repeating n-grams of this size (default: 4, 0=off)")
+    parser.add_argument("--num_beams", type=int, default=1, help="Beam search width (default: 1=greedy, try 5 for beam search)")
+    parser.add_argument("--repetition_penalty", type=float, default=1.0, help="Repetition penalty (default: 1.0=off, try 1.1-1.2)")
+    parser.add_argument("--no_repeat_ngram_size", type=int, default=0, help="Block repeating n-grams of this size (default: 0=off)")
     parser.add_argument("--clean", action="store_true", help="Enable ASR text cleaning (default: off)")
     args = parser.parse_args()
 

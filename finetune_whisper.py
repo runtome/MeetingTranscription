@@ -8,11 +8,11 @@ Usage:
     python finetune_whisper.py
     python finetune_whisper.py --model_name openai/whisper-medium --batch_size 4 --epochs 5
 
-    # T13 recommended: T6 recipe + augmentation (1e-5 LR proven best for typhoon)
-    python finetune_whisper.py --model_name typhoon-ai/typhoon-whisper-large-v3 --epochs 10 --learning_rate 1e-5 --augment --encoder_lr_factor 1.0
+    # T14: exact T6 recipe (proven 30.74) + only augmentation added
+    python finetune_whisper.py --model_name typhoon-ai/typhoon-whisper-large-v3 --epochs 10 --augment --output_dir ./whisper-thai-finetuned-t14
 
-    # Optional: freeze encoder (only decoder trains)
-    python finetune_whisper.py --model_name typhoon-ai/typhoon-whisper-large-v3 --epochs 10 --learning_rate 1e-5 --augment --freeze_encoder
+    # T6 exact reproduction (no augment)
+    python finetune_whisper.py --model_name typhoon-ai/typhoon-whisper-large-v3 --epochs 10
 """
 
 import argparse
@@ -50,16 +50,16 @@ def main():
     parser.add_argument("--batch_size", type=int, default=8, help="Per-device batch size (default: 8)")
     parser.add_argument("--learning_rate", type=float, default=1e-5, help="Learning rate (default: 1e-5)")
     parser.add_argument("--warmup_steps", type=int, default=500, help="Warmup steps (default: 500)")
-    parser.add_argument("--save_steps", type=int, default=200, help="Save checkpoint every N steps (default: 200)")
-    parser.add_argument("--eval_steps", type=int, default=200, help="Evaluate every N steps (default: 200)")
+    parser.add_argument("--save_steps", type=int, default=500, help="Save checkpoint every N steps (default: 500)")
+    parser.add_argument("--eval_steps", type=int, default=500, help="Evaluate every N steps (default: 500)")
     parser.add_argument(
-        "--gradient_accumulation_steps", type=int, default=4,
-        help="Gradient accumulation steps (default: 4, effective batch = batch_size * 4)"
+        "--gradient_accumulation_steps", type=int, default=1,
+        help="Gradient accumulation steps (default: 1)"
     )
-    parser.add_argument("--weight_decay", type=float, default=0.01, help="Weight decay (default: 0.01)")
+    parser.add_argument("--weight_decay", type=float, default=0.0, help="Weight decay (default: 0.0)")
     parser.add_argument(
-        "--lr_scheduler", default="cosine",
-        help="LR scheduler type: cosine, linear, constant_with_warmup (default: cosine)"
+        "--lr_scheduler", default="linear",
+        help="LR scheduler type: linear, cosine, constant_with_warmup (default: linear)"
     )
     parser.add_argument("--augment", action="store_true", help="Enable data augmentation (speed perturbation + spec augment)")
     parser.add_argument("--save_total_limit", type=int, default=3, help="Max checkpoints to keep (default: 3)")
