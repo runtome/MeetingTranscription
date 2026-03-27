@@ -16,7 +16,9 @@
       "Bash(python -c \"import ast; ast.parse\\(open\\(''LLM/inference.py''\\).read\\(\\)\\); print\\(''LLM inference OK''\\)\")",
       "Bash(python -c \"import ast; ast.parse\\(open\\(''LLM/prepare_asr_dataset.py''\\).read\\(\\)\\); print\\(''LLM prepare OK''\\)\")",
       "Bash(python -c \"import ast; ast.parse\\(open\\(''LLM/inference.py'', encoding=''utf-8''\\).read\\(\\)\\); print\\(''LLM inference OK''\\)\")",
-      "Bash(python -c \"import ast; ast.parse\\(open\\(''LLM/prepare_asr_dataset.py'', encoding=''utf-8''\\).read\\(\\)\\); print\\(''LLM prepare OK''\\)\")"
+      "Bash(python -c \"import ast; ast.parse\\(open\\(''LLM/prepare_asr_dataset.py'', encoding=''utf-8''\\).read\\(\\)\\); print\\(''LLM prepare OK''\\)\")",
+      "mcp__claude_ai_Hugging_Face__hub_repo_search",
+      "Bash(python -c \"import ast; ast.parse\\(open\\(''ensemble_results.py'', encoding=''utf-8''\\).read\\(\\)\\); print\\(''ensemble OK''\\)\")"
     ]
   }
 }
