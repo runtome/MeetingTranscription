@@ -1,0 +1,253 @@
+User: ua017
+Count Node: 
+LD_LIBRARY_PATH = /opt/nvidia/hpc_sdk/Linux_x86_64/24.11/cuda/12.6/lib64:/opt/cray/pe/libsci/25.03.0/CRAYCLANG/17.0/x86_64/lib:/opt/cray/pe/mpich/8.1.32/ofi/crayclang/17.0/lib:/opt/cray/pe/mpich/8.1.32/gtl/lib:/opt/cray/pe/dsmml/0.3.1/dsmml/lib:/opt/cray/pe/cce/19.0.0/cce-clang/x86_64/lib:/opt/cray/pe/cce/19.0.0/cce/x86_64/lib:/opt/cray/pe/papi/7.2.0.1/lib64:/opt/cray/libfabric/1.22.0/lib64
+PATH = /opt/nvidia/hpc_sdk/Linux_x86_64/24.11/cuda/12.6/bin:/lustrefs/disk/project/zz991000-zdeva/zz991010/llamafactory/bin:/lustrefs/disk/modules/easybuild/software/Miniforge3/25.3.0-3/condabin:/lustrefs/disk/modules/easybuild/software/Miniforge3/25.3.0-3:/lustrefs/disk/modules/easybuild/software/Miniforge3/25.3.0-3/sbin:/lustrefs/disk/modules/easybuild/software/Miniforge3/25.3.0-3/bin:/opt/cray/pe/mpich/8.1.32/ofi/crayclang/17.0/bin:/opt/cray/pe/mpich/8.1.32/bin:/opt/cray/pe/craype/2.7.34/bin:/opt/cray/pe/cce/19.0.0/binutils/x86_64/x86_64-pc-linux-gnu/bin:/opt/cray/pe/cce/19.0.0/binutils/cross/x86_64-aarch64/bin:/opt/cray/pe/cce/19.0.0/utils/x86_64/bin:/opt/cray/pe/cce/19.0.0/bin:/opt/cray/pe/perftools/25.03.0/bin:/opt/cray/pe/papi/7.2.0.1/bin:/opt/cray/libfabric/1.22.0/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/bin:/opt/c3/bin:/usr/lib/mit/bin:/opt/cray/pe/bin
+Which mpicc: /opt/cray/pe/mpich/8.1.32/ofi/crayclang/17.0/bin/mpicc
+Hostnames: 
+Hostname: x1000c4s6b0n0
+MASTER_ADDR: 
+MASTER_PORT: 
+THEID (Node Rank): 
+SLURM_PROCID: 0
+Resolved YAML:
+### model
+model_name_or_path: Qwen/Qwen3-8B
+# trust_remote_code: true
+
+dataset: asr_correction
+template: qwen3
+cutoff_len: 4096
+overwrite_cache: true
+preprocessing_num_workers: 32
+dataset_dir : /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//script
+tokenized_path: /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//dataset/tokenized_dataset/asr_correction
+
+### output
+output_dir: /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//dataset/tokenized_dataset/asr_correction
+overwrite_output_dir: true
+Resolved dataset_info.json:
+{
+  "wisesight_sentiment": {
+    "file_name": "/project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//dataset/format_dataset/wisesight_process/wisesight_sentiment_train.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant",
+      "system_tag": "system"
+    }
+  },
+  "asr_correction": {
+    "file_name": "/project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//dataset/format_dataset/asr_correction/asr_correction_train.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages"
+[WARNING|2026-03-15 13:51:02] llamafactory.extras.misc:154 >> Version checking has been disabled, may lead to unexpected behaviors.
+[INFO|2026-03-15 13:51:07] llamafactory.hparams.parser:465 >> Process rank: 0, world size: 1, device: cuda:0, distributed training: False, compute dtype: None
+[INFO|hub.py:421] 2026-03-15 13:51:07,646 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:1949] 2026-03-15 13:51:07,834 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 13:51:07,842 >> loading file vocab.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/vocab.json
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 13:51:07,842 >> loading file merges.txt from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/merges.txt
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 13:51:07,842 >> loading file tokenizer.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/tokenizer.json
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 13:51:07,842 >> loading file added_tokens.json from cache at None
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 13:51:07,842 >> loading file special_tokens_map.json from cache at None
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 13:51:07,842 >> loading file tokenizer_config.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 13:51:07,842 >> loading file chat_template.jinja from cache at None
+[INFO|tokenization_utils_base.py:2364] 2026-03-15 13:51:08,185 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[INFO|hub.py:421] 2026-03-15 13:51:08,185 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:421] 2026-03-15 13:51:08,186 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:421] 2026-03-15 13:51:08,187 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:421] 2026-03-15 13:51:08,188 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:421] 2026-03-15 13:51:08,188 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:421] 2026-03-15 13:51:08,189 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:765] 2026-03-15 13:51:08,211 >> loading configuration file config.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/config.json
+[INFO|configuration_utils.py:839] 2026-03-15 13:51:08,233 >> Model config Qwen3Config {
+  "architectures": [
+    "Qwen3ForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 12288,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 40960,
+  "max_window_layers": 36,
+  "model_type": "qwen3",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 36,
+  "num_key_value_heads": 8,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "sliding_window": null,
+  "tie_word_embeddings": false,
+  "transformers_version": "4.57.1",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|hub.py:421] 2026-03-15 13:51:08,234 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:1949] 2026-03-15 13:51:08,234 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 13:51:08,236 >> loading file vocab.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/vocab.json
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 13:51:08,236 >> loading file merges.txt from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/merges.txt
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 13:51:08,236 >> loading file tokenizer.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/tokenizer.json
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 13:51:08,236 >> loading file added_tokens.json from cache at None
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 13:51:08,236 >> loading file special_tokens_map.json from cache at None
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 13:51:08,236 >> loading file tokenizer_config.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 13:51:08,236 >> loading file chat_template.jinja from cache at None
+[INFO|tokenization_utils_base.py:2364] 2026-03-15 13:51:08,512 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[WARNING|2026-03-15 13:51:08] llamafactory.data.template:148 >> You are using reasoning template, please add `_nothink` suffix if the model is not a reasoning model. e.g., qwen3_vl_nothink
+[WARNING|2026-03-15 13:51:08] llamafactory.data.loader:148 >> Loading dataset from disk will ignore other data arguments.
+[INFO|2026-03-15 13:51:09] llamafactory.data.loader:143 >> Loaded tokenized dataset from /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//dataset/tokenized_dataset/asr_correction.
+[INFO|hub.py:421] 2026-03-15 13:51:09,016 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:765] 2026-03-15 13:51:09,017 >> loading configuration file config.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/config.json
+[INFO|configuration_utils.py:839] 2026-03-15 13:51:09,017 >> Model config Qwen3Config {
+  "architectures": [
+    "Qwen3ForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 12288,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 40960,
+  "max_window_layers": 36,
+  "model_type": "qwen3",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 36,
+  "num_key_value_heads": 8,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "sliding_window": null,
+  "tie_word_embeddings": false,
+  "transformers_version": "4.57.1",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[WARNING|logging.py:328] 2026-03-15 13:51:09,018 >> `torch_dtype` is deprecated! Use `dtype` instead!
+[INFO|2026-03-15 13:51:09] llamafactory.model.model_utils.kv_cache:143 >> KV cache is enabled for faster generation.
+[INFO|hub.py:421] 2026-03-15 13:51:11,227 >> Offline mode: forcing local_files_only=True
+[WARNING|logging.py:328] 2026-03-15 13:51:11,253 >> `torch_dtype` is deprecated! Use `dtype` instead!
+[INFO|hub.py:421] 2026-03-15 13:51:11,253 >> Offline mode: forcing local_files_only=True
+[INFO|modeling_utils.py:4837] 2026-03-15 13:51:11,253 >> Offline mode: forcing local_files_only=True
+[INFO|modeling_utils.py:1172] 2026-03-15 13:51:11,254 >> loading weights file model.safetensors from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/model.safetensors.index.json
+[INFO|modeling_utils.py:1243] 2026-03-15 13:51:11,530 >> Will use dtype=torch.bfloat16 as defined in model's config object
+[INFO|modeling_utils.py:2341] 2026-03-15 13:51:11,531 >> Instantiating Qwen3ForCausalLM model under default dtype torch.bfloat16.
+[INFO|configuration_utils.py:986] 2026-03-15 13:51:11,532 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "eos_token_id": 151645
+}
+
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:03<00:14,  3.67s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:07<00:10,  3.50s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:10<00:07,  3.59s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:13<00:03,  3.33s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:15<00:00,  2.62s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:15<00:00,  3.01s/it]
+[INFO|configuration_utils.py:941] 2026-03-15 13:51:27,505 >> loading configuration file generation_config.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/generation_config.json
+[INFO|configuration_utils.py:986] 2026-03-15 13:51:27,506 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "do_sample": true,
+  "eos_token_id": [
+    151645,
+    151643
+  ],
+  "pad_token_id": 151643,
+  "temperature": 0.6,
+  "top_k": 20,
+  "top_p": 0.95
+}
+
+[INFO|dynamic_module_utils.py:423] 2026-03-15 13:51:27,507 >> Could not locate the custom_generate/generate.py inside Qwen/Qwen3-8B.
+[INFO|2026-03-15 13:51:27] llamafactory.model.model_utils.attention:143 >> Using torch SDPA for faster training and inference.
+[INFO|2026-03-15 13:51:27] llamafactory.model.loader:143 >> all params: 8,190,735,360
+[WARNING|trainer.py:906] 2026-03-15 13:51:27,836 >> The model is already on multiple devices. Skipping the move to device specified in `args`.

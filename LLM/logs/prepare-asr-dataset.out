@@ -1,0 +1,38 @@
+User: ua017
+Hostname: x1001c0s0b0n0
+
+============================================================
+Processing train split
+  ASR CSV:    /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//datasets/train/asr_output.csv
+  GT CSV:     /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//datasets/train/train.csv
+============================================================
+  ASR rows (after filtering): 9919
+  GT rows (after filtering):  16328
+  Matched rows: 9919
+  Unmatched GT rows: 6409
+  Output: /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//dataset/format_dataset/asr_correction/asr_correction_train.json (9919 entries)
+
+  Sample entry:
+    Path:      Hijack_S001_T057_AnkerConf_chunk1.mp3
+    User:      ครับสวัสดีครับ M ศูนย์หนึ่งครับผม สวาสดีค่ะ F ฤกษ์ สองค่ะ หัวข้อ Topic ที่ห้าสิบ...
+    Assistant: ครับสวัสดีครับ M ศูนย์หนึ่งครับผม สวัสดีค่ะ F ศูนย์หนึ่งค่ะ สวัสดีค่ะ F ศูนย์สอง...
+
+============================================================
+Processing val split
+  ASR CSV:    /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//datasets/val/asr_output.csv
+  GT CSV:     /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//datasets/val/val.csv
+============================================================
+  ASR rows (after filtering): 2312
+  GT rows (after filtering):  2312
+  Matched rows: 2312
+  Output: /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//dataset/format_dataset/asr_correction/asr_correction_val.json (2312 entries)
+
+  Sample entry:
+    Path:      Hijack_S081_T069_AnkerConf_chunk1.mp3
+    User:      ครับ สวัสดีครับผม M สามสิบแปดครับ M สี่สิบเก้าครับ F สองสิบสองครับ Topic หกสิบ เ...
+    Assistant: ครับสวัสดีครับผม M สามสิบแปดครับ สวัสดีครับ M สามสิบเก้าครับ สวัสดีค่ะ F สี่สิบส...
+
+============================================================
+Total entries: 12231
+Output dir: /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//dataset/format_dataset/asr_correction
+============================================================

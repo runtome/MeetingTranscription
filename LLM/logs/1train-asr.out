@@ -1,0 +1,547 @@
+Nodes: 1
+Master: lanta-g-059:36554
+User: ua017
+Hostname: x1000c5s5b0n0
+SLURM_PROCID: 0
+Resolved YAML:
+### model
+model_name_or_path: Qwen/Qwen3-8B
+# trust_remote_code: true
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 8
+lora_target: all
+# deepspeed: /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//script/deepspeed/ds_z2_config.json  # choices: [ds_z0_config.json, ds_z2_config.json, ds_z3_config.json]
+
+### dataset
+dataset: asr_correction
+template: qwen3
+cutoff_len: 4096
+max_samples: 20000
+overwrite_cache: true
+preprocessing_num_workers: 16
+dataloader_num_workers: 4
+/project/zz991000-zdeva/zz991010/llamafactory/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+[INFO|2026-03-15 14:35:39] llamafactory.launcher:143 >> Initializing 4 distributed tasks at: lanta-g-059:36554
+W0315 14:35:40.614000 1364229 /lustrefs/disk/project/zz991000-zdeva/zz991010/llamafactory/lib/python3.12/site-packages/torch/distributed/run.py:852] 
+W0315 14:35:40.614000 1364229 /lustrefs/disk/project/zz991000-zdeva/zz991010/llamafactory/lib/python3.12/site-packages/torch/distributed/run.py:852] *****************************************
+W0315 14:35:40.614000 1364229 /lustrefs/disk/project/zz991000-zdeva/zz991010/llamafactory/lib/python3.12/site-packages/torch/distributed/run.py:852] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0315 14:35:40.614000 1364229 /lustrefs/disk/project/zz991000-zdeva/zz991010/llamafactory/lib/python3.12/site-packages/torch/distributed/run.py:852] *****************************************
+/project/zz991000-zdeva/zz991010/llamafactory/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/project/zz991000-zdeva/zz991010/llamafactory/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/project/zz991000-zdeva/zz991010/llamafactory/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/project/zz991000-zdeva/zz991010/llamafactory/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+[WARNING|2026-03-15 14:35:46] llamafactory.extras.misc:154 >> Version checking has been disabled, may lead to unexpected behaviors.
+⚙️  Running in WANDB offline mode
+⚙️  Running in WANDB offline mode
+⚙️  Running in WANDB offline mode
+⚙️  Running in WANDB offline mode
+[W315 14:35:46.963697245 Utils.hpp:166] Warning: Environment variable NCCL_BLOCKING_WAIT is deprecated; use TORCH_NCCL_BLOCKING_WAIT instead (function operator())
+[W315 14:35:46.963736220 ProcessGroupNCCL.cpp:929] Warning: TORCH_NCCL_AVOID_RECORD_STREAMS is the default now, this environment variable is thus deprecated. (function operator())
+[W315 14:35:46.007654535 Utils.hpp:166] Warning: Environment variable NCCL_BLOCKING_WAIT is deprecated; use TORCH_NCCL_BLOCKING_WAIT instead (function operator())
+[W315 14:35:46.007693891 ProcessGroupNCCL.cpp:929] Warning: TORCH_NCCL_AVOID_RECORD_STREAMS is the default now, this environment variable is thus deprecated. (function operator())
+[W315 14:35:46.022295639 Utils.hpp:166] Warning: Environment variable NCCL_BLOCKING_WAIT is deprecated; use TORCH_NCCL_BLOCKING_WAIT instead (function operator())
+[W315 14:35:46.022330357 ProcessGroupNCCL.cpp:929] Warning: TORCH_NCCL_AVOID_RECORD_STREAMS is the default now, this environment variable is thus deprecated. (function operator())
+[W315 14:35:46.023790874 Utils.hpp:166] Warning: Environment variable NCCL_BLOCKING_WAIT is deprecated; use TORCH_NCCL_BLOCKING_WAIT instead (function operator())
+[W315 14:35:46.023819319 ProcessGroupNCCL.cpp:929] Warning: TORCH_NCCL_AVOID_RECORD_STREAMS is the default now, this environment variable is thus deprecated. (function operator())
+[INFO|2026-03-15 14:35:47] llamafactory.hparams.parser:465 >> Process rank: 1, world size: 4, device: cuda:1, distributed training: True, compute dtype: torch.bfloat16
+[INFO|2026-03-15 14:35:47] llamafactory.hparams.parser:143 >> Set `ddp_find_unused_parameters` to False in DDP training since LoRA is enabled.
+[INFO|2026-03-15 14:35:47] llamafactory.hparams.parser:465 >> Process rank: 0, world size: 4, device: cuda:0, distributed training: True, compute dtype: torch.bfloat16
+[INFO|hub.py:421] 2026-03-15 14:35:47,283 >> Offline mode: forcing local_files_only=True
+[INFO|2026-03-15 14:35:47] llamafactory.hparams.parser:465 >> Process rank: 3, world size: 4, device: cuda:3, distributed training: True, compute dtype: torch.bfloat16
+[INFO|tokenization_utils_base.py:1949] 2026-03-15 14:35:47,290 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 14:35:47,291 >> loading file vocab.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/vocab.json
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 14:35:47,291 >> loading file merges.txt from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/merges.txt
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 14:35:47,291 >> loading file tokenizer.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/tokenizer.json
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 14:35:47,291 >> loading file added_tokens.json from cache at None
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 14:35:47,291 >> loading file special_tokens_map.json from cache at None
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 14:35:47,291 >> loading file tokenizer_config.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 14:35:47,291 >> loading file chat_template.jinja from cache at None
+[INFO|2026-03-15 14:35:47] llamafactory.hparams.parser:465 >> Process rank: 2, world size: 4, device: cuda:2, distributed training: True, compute dtype: torch.bfloat16
+[INFO|tokenization_utils_base.py:2364] 2026-03-15 14:35:47,541 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[INFO|hub.py:421] 2026-03-15 14:35:47,541 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:421] 2026-03-15 14:35:47,542 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:421] 2026-03-15 14:35:47,543 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:421] 2026-03-15 14:35:47,543 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:421] 2026-03-15 14:35:47,544 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:421] 2026-03-15 14:35:47,545 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:765] 2026-03-15 14:35:47,545 >> loading configuration file config.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/config.json
+[INFO|configuration_utils.py:839] 2026-03-15 14:35:47,547 >> Model config Qwen3Config {
+  "architectures": [
+    "Qwen3ForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 12288,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 40960,
+  "max_window_layers": 36,
+  "model_type": "qwen3",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 36,
+  "num_key_value_heads": 8,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "sliding_window": null,
+  "tie_word_embeddings": false,
+  "transformers_version": "4.57.1",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|hub.py:421] 2026-03-15 14:35:47,547 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:1949] 2026-03-15 14:35:47,548 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 14:35:47,550 >> loading file vocab.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/vocab.json
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 14:35:47,550 >> loading file merges.txt from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/merges.txt
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 14:35:47,550 >> loading file tokenizer.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/tokenizer.json
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 14:35:47,550 >> loading file added_tokens.json from cache at None
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 14:35:47,550 >> loading file special_tokens_map.json from cache at None
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 14:35:47,550 >> loading file tokenizer_config.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2095] 2026-03-15 14:35:47,550 >> loading file chat_template.jinja from cache at None
+[INFO|tokenization_utils_base.py:2364] 2026-03-15 14:35:47,799 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+[WARNING|2026-03-15 14:35:47] llamafactory.data.template:148 >> You are using reasoning template, please add `_nothink` suffix if the model is not a reasoning model. e.g., qwen3_vl_nothink
+[WARNING|2026-03-15 14:35:47] llamafactory.data.loader:148 >> Loading dataset from disk will ignore other data arguments.
+[INFO|2026-03-15 14:35:47] llamafactory.data.loader:143 >> Loaded tokenized dataset from /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//dataset/tokenized_dataset/asr_correction.
+[INFO|hub.py:421] 2026-03-15 14:35:47,827 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:765] 2026-03-15 14:35:47,828 >> loading configuration file config.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/config.json
+[INFO|configuration_utils.py:839] 2026-03-15 14:35:47,828 >> Model config Qwen3Config {
+  "architectures": [
+    "Qwen3ForCausalLM"
+  ],
+  "attention_bias": false,
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "head_dim": 128,
+  "hidden_act": "silu",
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 12288,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 40960,
+  "max_window_layers": 36,
+  "model_type": "qwen3",
+  "num_attention_heads": 32,
+  "num_hidden_layers": 36,
+  "num_key_value_heads": 8,
+  "rms_norm_eps": 1e-06,
+  "rope_scaling": null,
+  "rope_theta": 1000000,
+  "sliding_window": null,
+  "tie_word_embeddings": false,
+  "transformers_version": "4.57.1",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|2026-03-15 14:35:47] llamafactory.model.model_utils.kv_cache:143 >> KV cache is disabled during training.
+[INFO|hub.py:421] 2026-03-15 14:35:48,068 >> Offline mode: forcing local_files_only=True
+`torch_dtype` is deprecated! Use `dtype` instead!
+`torch_dtype` is deprecated! Use `dtype` instead!
+[WARNING|logging.py:328] 2026-03-15 14:35:48,073 >> `torch_dtype` is deprecated! Use `dtype` instead!
+[INFO|hub.py:421] 2026-03-15 14:35:48,073 >> Offline mode: forcing local_files_only=True
+`torch_dtype` is deprecated! Use `dtype` instead!
+[INFO|modeling_utils.py:4837] 2026-03-15 14:35:48,073 >> Offline mode: forcing local_files_only=True
+[INFO|modeling_utils.py:1172] 2026-03-15 14:35:48,074 >> loading weights file model.safetensors from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/model.safetensors.index.json
+[INFO|modeling_utils.py:1243] 2026-03-15 14:35:48,075 >> Will use dtype=torch.bfloat16 as defined in model's config object
+[INFO|modeling_utils.py:2341] 2026-03-15 14:35:48,075 >> Instantiating Qwen3ForCausalLM model under default dtype torch.bfloat16.
+[INFO|configuration_utils.py:986] 2026-03-15 14:35:48,076 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "eos_token_id": 151645,
+  "use_cache": false
+}
+
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:02<00:10,  2.64s/it]Loading checkpoint shards:  20%|██        | 1/5 [00:02<00:10,  2.70s/it]Loading checkpoint shards:  20%|██        | 1/5 [00:02<00:10,  2.70s/it]Loading checkpoint shards:  20%|██        | 1/5 [00:02<00:10,  2.69s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:05<00:07,  2.66s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:05<00:08,  2.73s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:05<00:08,  2.74s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:05<00:08,  2.74s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:07<00:05,  2.62s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:08<00:05,  2.68s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:08<00:05,  2.69s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:08<00:05,  2.72s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:09<00:02,  2.35s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:10<00:02,  2.38s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:10<00:02,  2.40s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:10<00:02,  2.42s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:10<00:00,  1.75s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:10<00:00,  2.10s/it]
+Loading checkpoint shards: 100%|██████████| 5/5 [00:10<00:00,  1.78s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:10<00:00,  2.14s/it]
+Loading checkpoint shards: 100%|██████████| 5/5 [00:10<00:00,  1.79s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:10<00:00,  2.15s/it]
+[INFO|configuration_utils.py:941] 2026-03-15 14:35:58,952 >> loading configuration file generation_config.json from cache at /project/zz991000-zdeva/zz991010/MeetingTranscription/LLM//.cache/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218/generation_config.json
+[INFO|configuration_utils.py:986] 2026-03-15 14:35:58,952 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "do_sample": true,
+  "eos_token_id": [
+    151645,
+    151643
+  ],
+  "pad_token_id": 151643,
+  "temperature": 0.6,
+  "top_k": 20,
+  "top_p": 0.95
+}
+
+[INFO|dynamic_module_utils.py:423] 2026-03-15 14:35:58,952 >> Could not locate the custom_generate/generate.py inside Qwen/Qwen3-8B.
+[INFO|2026-03-15 14:35:58] llamafactory.model.model_utils.checkpointing:143 >> Gradient checkpointing enabled.
+[INFO|2026-03-15 14:35:58] llamafactory.model.model_utils.attention:143 >> Using torch SDPA for faster training and inference.
+[INFO|2026-03-15 14:35:58] llamafactory.model.adapter:143 >> Upcasting trainable params to float32.
+[INFO|2026-03-15 14:35:58] llamafactory.model.adapter:143 >> Fine-tuning method: LoRA
+[INFO|2026-03-15 14:35:58] llamafactory.model.model_utils.misc:143 >> Found linear modules: o_proj,q_proj,v_proj,up_proj,k_proj,down_proj,gate_proj
+The model is already on multiple devices. Skipping the move to device specified in `args`.
+Loading checkpoint shards: 100%|██████████| 5/5 [00:10<00:00,  1.81s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:10<00:00,  2.17s/it]
+The model is already on multiple devices. Skipping the move to device specified in `args`.
+[INFO|2026-03-15 14:35:59] llamafactory.model.loader:143 >> trainable params: 21,823,488 || all params: 8,212,558,848 || trainable%: 0.2657
+[WARNING|trainer.py:906] 2026-03-15 14:35:59,303 >> The model is already on multiple devices. Skipping the move to device specified in `args`.
+The model is already on multiple devices. Skipping the move to device specified in `args`.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+[INFO|trainer.py:749] 2026-03-15 14:36:00,900 >> Using auto half precision backend
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+[WARNING|trainer.py:982] 2026-03-15 14:36:00,901 >> The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+x1000c5s5b0n0:1364556:1364556 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to hsn
+x1000c5s5b0n0:1364556:1364556 [0] NCCL INFO Bootstrap: Using hsn0:10.150.1.119<0>
+x1000c5s5b0n0:1364556:1364556 [0] NCCL INFO cudaDriverVersion 12070
+x1000c5s5b0n0:1364556:1364556 [0] NCCL INFO NCCL version 2.27.5+cuda12.9
+x1000c5s5b0n0:1364556:1364556 [0] NCCL INFO Comm config Blocking set to 1
+x1000c5s5b0n0:1364558:1364558 [2] NCCL INFO cudaDriverVersion 12070
+x1000c5s5b0n0:1364558:1364558 [2] NCCL INFO NCCL_SOCKET_IFNAME set by environment to hsn
+x1000c5s5b0n0:1364557:1364557 [1] NCCL INFO cudaDriverVersion 12070
+x1000c5s5b0n0:1364558:1364558 [2] NCCL INFO Bootstrap: Using hsn0:10.150.1.119<0>
+x1000c5s5b0n0:1364558:1364558 [2] NCCL INFO NCCL version 2.27.5+cuda12.9
+x1000c5s5b0n0:1364557:1364557 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to hsn
+x1000c5s5b0n0:1364559:1364559 [3] NCCL INFO cudaDriverVersion 12070
+x1000c5s5b0n0:1364558:1364558 [2] NCCL INFO Comm config Blocking set to 1
+x1000c5s5b0n0:1364557:1364557 [1] NCCL INFO Bootstrap: Using hsn0:10.150.1.119<0>
+x1000c5s5b0n0:1364557:1364557 [1] NCCL INFO NCCL version 2.27.5+cuda12.9
+x1000c5s5b0n0:1364559:1364559 [3] NCCL INFO NCCL_SOCKET_IFNAME set by environment to hsn
+x1000c5s5b0n0:1364559:1364559 [3] NCCL INFO Bootstrap: Using hsn0:10.150.1.119<0>
+x1000c5s5b0n0:1364559:1364559 [3] NCCL INFO NCCL version 2.27.5+cuda12.9
+x1000c5s5b0n0:1364557:1364557 [1] NCCL INFO Comm config Blocking set to 1
+x1000c5s5b0n0:1364559:1364559 [3] NCCL INFO Comm config Blocking set to 1
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO NET/Plugin: Could not find: libnccl-net.so. 
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to hsn
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO NET/IB : No device found.
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO NET/IB : Using [RO]; OOB hsn0:10.150.1.119<0>
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to hsn
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO NET/Socket : Using [0]hsn0:10.150.1.119<0> [1]hsn1:10.150.1.118<0>
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Initialized NET plugin Socket
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Assigned NET plugin Socket to comm
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Using network Socket
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO ncclCommInitRankConfig comm 0x563f071c8cd0 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 3000 commId 0x605b697da7234106 - Init START
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO NET/Plugin: Could not find: libnccl-net.so. 
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO NCCL_SOCKET_IFNAME set by environment to hsn
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO NET/IB : No device found.
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO NET/IB : Using [RO]; OOB hsn0:10.150.1.119<0>
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO NCCL_SOCKET_IFNAME set by environment to hsn
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO NET/Socket : Using [0]hsn0:10.150.1.119<0> [1]hsn1:10.150.1.118<0>
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO Initialized NET plugin Socket
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO Assigned NET plugin Socket to comm
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO Using network Socket
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO NET/Plugin: Could not find: libnccl-net.so. 
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO NCCL_SOCKET_IFNAME set by environment to hsn
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO NET/IB : No device found.
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO NET/IB : Using [RO]; OOB hsn0:10.150.1.119<0>
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO NCCL_SOCKET_IFNAME set by environment to hsn
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO NET/Socket : Using [0]hsn0:10.150.1.119<0> [1]hsn1:10.150.1.118<0>
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO Initialized NET plugin Socket
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO Assigned NET plugin Socket to comm
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO Using network Socket
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO NET/Plugin: Could not find: libnccl-net.so. 
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to hsn
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO NET/IB : No device found.
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO NET/IB : Using [RO]; OOB hsn0:10.150.1.119<0>
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to hsn
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO NET/Socket : Using [0]hsn0:10.150.1.119<0> [1]hsn1:10.150.1.118<0>
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO Initialized NET plugin Socket
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO Assigned NET plugin Socket to comm
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO Using network Socket
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO ncclCommInitRankConfig comm 0x5556a1e48560 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 81000 commId 0x605b697da7234106 - Init START
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO ncclCommInitRankConfig comm 0x56181d3b5130 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId c1000 commId 0x605b697da7234106 - Init START
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO ncclCommInitRankConfig comm 0x558fc25a7240 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 41000 commId 0x605b697da7234106 - Init START
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO Bootstrap timings total 0.002776 (create 0.000034, send 0.000095, recv 0.000203, ring 0.002017, delay 0.000003)
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Bootstrap timings total 0.039992 (create 0.000032, send 0.000094, recv 0.039298, ring 0.000092, delay 0.000003)
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO Bootstrap timings total 0.000831 (create 0.000034, send 0.000093, recv 0.000199, ring 0.000056, delay 0.000003)
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO Bootstrap timings total 0.009512 (create 0.000032, send 0.000094, recv 0.006824, ring 0.000072, delay 0.000003)
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO Setting affinity for GPU 3 to 0-15
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO NVLS multicast support is not available on dev 3 (NVLS_NCHANNELS 0)
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Setting affinity for GPU 0 to 48-63
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO NVLS multicast support is not available on dev 0 (NVLS_NCHANNELS 0)
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO Setting affinity for GPU 1 to 32-47
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO NVLS multicast support is not available on dev 1 (NVLS_NCHANNELS 0)
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO Setting affinity for GPU 2 to 16-31
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO NVLS multicast support is not available on dev 2 (NVLS_NCHANNELS 0)
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO comm 0x56181d3b5130 rank 3 nRanks 4 nNodes 1 localRanks 4 localRank 3 MNNVL 0
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO comm 0x563f071c8cd0 rank 0 nRanks 4 nNodes 1 localRanks 4 localRank 0 MNNVL 0
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO comm 0x5556a1e48560 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO comm 0x558fc25a7240 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 00/24 : 0 3 1 2
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 01/24 : 0 3 2 1
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 02/24 : 0 1 2 3
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 03/24 : 0 1 3 2
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 04/24 : 0 2 3 1
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 05/24 : 0 2 1 3
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 06/24 : 0 3 1 2
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 07/24 : 0 3 2 1
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO Trees [0] 1/-1/-1->3->0 [1] 1/-1/-1->3->0 [2] 1/-1/-1->3->0 [3] 1/-1/-1->3->0 [4] 2/-1/-1->3->1 [5] 2/-1/-1->3->1 [6] 2/-1/-1->3->1 [7] 2/-1/-1->3->1 [8] 0/-1/-1->3->-1 [9] 0/-1/-1->3->-1 [10] 0/-1/-1->3->-1 [11] 0/-1/-1->3->-1 [12] 1/-1/-1->3->0 [13] 1/-1/-1->3->0 [14] 1/-1/-1->3->0 [15] 1/-1/-1->3->0 [16] 2/-1/-1->3->1 [17] 2/-1/-1->3->1 [18] 2/-1/-1->3->1 [19] 2/-1/-1->3->1 [20] 0/-1/-1->3->-1 [21] 0/-1/-1->3->-1 [22] 0/-1/-1->3->-1 [23] 0/-1/-1->3->-1
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 08/24 : 0 1 2 3
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO Trees [0] -1/-1/-1->2->1 [1] -1/-1/-1->2->1 [2] -1/-1/-1->2->1 [3] -1/-1/-1->2->1 [4] -1/-1/-1->2->3 [5] -1/-1/-1->2->3 [6] -1/-1/-1->2->3 [7] -1/-1/-1->2->3 [8] 1/-1/-1->2->0 [9] 1/-1/-1->2->0 [10] 1/-1/-1->2->0 [11] 1/-1/-1->2->0 [12] -1/-1/-1->2->1 [13] -1/-1/-1->2->1 [14] -1/-1/-1->2->1 [15] -1/-1/-1->2->1 [16] -1/-1/-1->2->3 [17] -1/-1/-1->2->3 [18] -1/-1/-1->2->3 [19] -1/-1/-1->2->3 [20] 1/-1/-1->2->0 [21] 1/-1/-1->2->0 [22] 1/-1/-1->2->0 [23] 1/-1/-1->2->0
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 09/24 : 0 1 3 2
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO P2P Chunksize set to 524288
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO Trees [0] 2/-1/-1->1->3 [1] 2/-1/-1->1->3 [2] 2/-1/-1->1->3 [3] 2/-1/-1->1->3 [4] 3/-1/-1->1->0 [5] 3/-1/-1->1->0 [6] 3/-1/-1->1->0 [7] 3/-1/-1->1->0 [8] -1/-1/-1->1->2 [9] -1/-1/-1->1->2 [10] -1/-1/-1->1->2 [11] -1/-1/-1->1->2 [12] 2/-1/-1->1->3 [13] 2/-1/-1->1->3 [14] 2/-1/-1->1->3 [15] 2/-1/-1->1->3 [16] 3/-1/-1->1->0 [17] 3/-1/-1->1->0 [18] 3/-1/-1->1->0 [19] 3/-1/-1->1->0 [20] -1/-1/-1->1->2 [21] -1/-1/-1->1->2 [22] -1/-1/-1->1->2 [23] -1/-1/-1->1->2
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 10/24 : 0 2 3 1
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO P2P Chunksize set to 524288
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 11/24 : 0 2 1 3
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO P2P Chunksize set to 524288
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 12/24 : 0 3 1 2
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 13/24 : 0 3 2 1
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 14/24 : 0 1 2 3
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 15/24 : 0 1 3 2
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 16/24 : 0 2 3 1
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 17/24 : 0 2 1 3
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 18/24 : 0 3 1 2
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 19/24 : 0 3 2 1
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 20/24 : 0 1 2 3
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 21/24 : 0 1 3 2
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 22/24 : 0 2 3 1
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Channel 23/24 : 0 2 1 3
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Trees [0] 3/-1/-1->0->-1 [1] 3/-1/-1->0->-1 [2] 3/-1/-1->0->-1 [3] 3/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] 1/-1/-1->0->-1 [7] 1/-1/-1->0->-1 [8] 2/-1/-1->0->3 [9] 2/-1/-1->0->3 [10] 2/-1/-1->0->3 [11] 2/-1/-1->0->3 [12] 3/-1/-1->0->-1 [13] 3/-1/-1->0->-1 [14] 3/-1/-1->0->-1 [15] 3/-1/-1->0->-1 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] 1/-1/-1->0->-1 [19] 1/-1/-1->0->-1 [20] 2/-1/-1->0->3 [21] 2/-1/-1->0->3 [22] 2/-1/-1->0->3 [23] 2/-1/-1->0->3
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO P2P Chunksize set to 524288
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so. 
+x1000c5s5b0n0:1364558:1368010 [2] NCCL INFO [Proxy Service] Device 2 CPU core 21
+x1000c5s5b0n0:1364558:1368011 [2] NCCL INFO [Proxy Service UDS] Device 2 CPU core 31
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so. 
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so. 
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0
+x1000c5s5b0n0:1364557:1368012 [1] NCCL INFO [Proxy Service] Device 1 CPU core 40
+x1000c5s5b0n0:1364557:1368013 [1] NCCL INFO [Proxy Service UDS] Device 1 CPU core 42
+x1000c5s5b0n0:1364556:1368014 [0] NCCL INFO [Proxy Service] Device 0 CPU core 60
+x1000c5s5b0n0:1364556:1368015 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 59
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so. 
+x1000c5s5b0n0:1364559:1368016 [3] NCCL INFO [Proxy Service] Device 3 CPU core 10
+x1000c5s5b0n0:1364559:1368017 [3] NCCL INFO [Proxy Service UDS] Device 3 CPU core 9
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO CC Off, workFifoBytes 1048576
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO 24 coll channels, 24 collnet channels, 0 nvls channels, 32 p2p channels, 8 p2p channels per peer
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO ncclCommInitRankConfig comm 0x5556a1e48560 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 81000 commId 0x605b697da7234106 - Init COMPLETE
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO ncclCommInitRankConfig comm 0x563f071c8cd0 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 3000 commId 0x605b697da7234106 - Init COMPLETE
+x1000c5s5b0n0:1364558:1367931 [2] NCCL INFO Init timings - ncclCommInitRankConfig: rank 2 nranks 4 total 0.20 (kernels 0.11, alloc 0.02, bootstrap 0.01, allgathers 0.00, topo 0.02, graphs 0.00, connections 0.02, rest 0.01)
+x1000c5s5b0n0:1364556:1367923 [0] NCCL INFO Init timings - ncclCommInitRankConfig: rank 0 nranks 4 total 0.22 (kernels 0.10, alloc 0.02, bootstrap 0.04, allgathers 0.00, topo 0.02, graphs 0.00, connections 0.02, rest 0.01)
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO ncclCommInitRankConfig comm 0x558fc25a7240 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 41000 commId 0x605b697da7234106 - Init COMPLETE
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO ncclCommInitRankConfig comm 0x56181d3b5130 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId c1000 commId 0x605b697da7234106 - Init COMPLETE
+x1000c5s5b0n0:1364557:1367932 [1] NCCL INFO Init timings - ncclCommInitRankConfig: rank 1 nranks 4 total 0.20 (kernels 0.12, alloc 0.03, bootstrap 0.00, allgathers 0.00, topo 0.02, graphs 0.00, connections 0.02, rest 0.01)
+x1000c5s5b0n0:1364559:1367933 [3] NCCL INFO Init timings - ncclCommInitRankConfig: rank 3 nranks 4 total 0.20 (kernels 0.11, alloc 0.03, bootstrap 0.00, allgathers 0.00, topo 0.02, graphs 0.00, connections 0.02, rest 0.01)
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 02/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 02/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 05/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 04/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 08/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 08/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 11/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 14/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 10/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 14/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 17/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 16/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 18/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 20/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 23/0 : 3[3] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 20/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 20/0 : 1[1] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 22/0 : 2[2] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 00/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 03/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 00/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 04/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 03/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 05/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 04/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 06/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 05/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 09/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 06/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 10/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 09/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 10/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 11/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 15/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 11/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 12/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 12/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 16/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 16/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 17/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 15/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 17/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 18/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 18/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 21/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 22/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 22/0 : 3[3] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 21/0 : 2[2] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 23/0 : 1[1] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 23/0 : 0[0] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 00/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 01/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 01/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 04/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 03/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 05/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 07/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 06/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 07/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 07/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 10/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 07/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 09/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 11/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 13/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 12/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 13/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 13/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 16/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 15/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 13/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 19/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 17/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 19/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 18/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Channel 22/0 : 1[1] -> 0[0] via P2P/CUMEM/read
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Channel 19/0 : 0[0] -> 3[3] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 19/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Channel 21/0 : 3[3] -> 2[2] via P2P/CUMEM/read
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Channel 23/0 : 2[2] -> 1[1] via P2P/CUMEM/read
+x1000c5s5b0n0:1364559:1368028 [3] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+x1000c5s5b0n0:1364558:1368031 [2] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+x1000c5s5b0n0:1364556:1368030 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+x1000c5s5b0n0:1364557:1368029 [1] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+[rank2]:[W315 14:36:01.324325145 Utils.hpp:112] Warning: Environment variable NCCL_BLOCKING_WAIT is deprecated; use TORCH_NCCL_BLOCKING_WAIT instead (function operator())
+[rank1]:[W315 14:36:01.324325115 Utils.hpp:112] Warning: Environment variable NCCL_BLOCKING_WAIT is deprecated; use TORCH_NCCL_BLOCKING_WAIT instead (function operator())
+[rank3]:[W315 14:36:01.324334794 Utils.hpp:112] Warning: Environment variable NCCL_BLOCKING_WAIT is deprecated; use TORCH_NCCL_BLOCKING_WAIT instead (function operator())
+[rank0]:[W315 14:36:01.324353901 Utils.hpp:112] Warning: Environment variable NCCL_BLOCKING_WAIT is deprecated; use TORCH_NCCL_BLOCKING_WAIT instead (function operator())
+[INFO|trainer.py:2519] 2026-03-15 14:36:02,074 >> ***** Running training *****
+[INFO|trainer.py:2520] 2026-03-15 14:36:02,074 >>   Num examples = 16,327
+[INFO|trainer.py:2521] 2026-03-15 14:36:02,074 >>   Num Epochs = 1
+[INFO|trainer.py:2522] 2026-03-15 14:36:02,074 >>   Instantaneous batch size per device = 8
+[INFO|trainer.py:2525] 2026-03-15 14:36:02,074 >>   Total train batch size (w. parallel, distributed & accumulation) = 64
+[INFO|trainer.py:2526] 2026-03-15 14:36:02,074 >>   Gradient Accumulation steps = 2
+[INFO|trainer.py:2527] 2026-03-15 14:36:02,074 >>   Total optimization steps = 256
+[INFO|trainer.py:2528] 2026-03-15 14:36:02,078 >>   Number of trainable parameters = 21,823,488
+{'loss': 0.4855, 'grad_norm': 0.7176278829574585, 'learning_rate': 3.461538461538462e-05, 'epoch': 0.04}
+  0%|          | 0/256 [00:00<?, ?it/s]  0%|          | 1/256 [00:04<20:20,  4.79s/it]  1%|          | 2/256 [00:08<16:45,  3.96s/it]  1%|          | 3/256 [00:11<15:38,  3.71s/it]  2%|▏         | 4/256 [00:14<14:59,  3.57s/it]  2%|▏         | 5/256 [00:18<14:17,  3.42s/it]  2%|▏         | 6/256 [00:21<14:35,  3.50s/it]  3%|▎         | 7/256 [00:25<14:29,  3.49s/it]  3%|▎         | 8/256 [00:28<14:18,  3.46s/it]  4%|▎         | 9/256 [00:31<13:58,  3.39s/it]  4%|▍         | 10/256 [00:35<14:22,  3.51s/it]                                                  4%|▍         | 10/256 [00:35<14:22,  3.51s/it]  4%|▍         | 11/256 [00:39<14:16,  3.49s/it]  5%|▍         | 12/256 [00:42<14:19,  3.52s/it]  5%|▌         | 13/256 [00:46<14:25,  3.56s/it]  5%|▌         | 14/256 [00:49<13:50,  3.43s/it]  6%|▌         | 15/256 [00:52<13:31,  3.37s/it]  6%|▋         | 16/256 [00:55<13:24,  3.35s/it]  7%|▋         | 17/256 [00:59<13:38,  3.42s/it]  7%|▋         | 18/256 [01:{'loss': 0.3104, 'grad_norm': 0.26619914174079895, 'learning_rate': 7.307692307692307e-05, 'epoch': 0.08}
+{'loss': 0.1558, 'grad_norm': 0.08638768643140793, 'learning_rate': 9.995802740501933e-05, 'epoch': 0.12}
+02<13:34,  3.42s/it]  7%|▋         | 19/256 [01:06<13:44,  3.48s/it]  8%|▊         | 20/256 [01:10<13:40,  3.48s/it]                                                  8%|▊         | 20/256 [01:10<13:40,  3.48s/it]  8%|▊         | 21/256 [01:13<13:18,  3.40s/it]  9%|▊         | 22/256 [01:16<13:06,  3.36s/it]  9%|▉         | 23/256 [01:19<12:59,  3.35s/it]  9%|▉         | 24/256 [01:23<13:07,  3.39s/it] 10%|▉         | 25/256 [01:26<13:05,  3.40s/it] 10%|█         | 26/256 [01:30<13:03,  3.41s/it] 11%|█         | 27/256 [01:33<13:07,  3.44s/it] 11%|█         | 28/256 [01:36<12:37,  3.32s/it] 11%|█▏        | 29/256 [01:39<12:26,  3.29s/it] 12%|█▏        | 30/256 [01:43<12:21,  3.28s/it]                                                 12%|█▏        | 30/256 [01:43<12:21,  3.28s/it] 12%|█▏        | 31/256 [01:46<12:20,  3.29s/it] 12%|█▎        | 32/256 [01:50<12:28,  3.34s/it] 13%|█▎        | 33/256 [01:53<12:42,  3.42s/it] 13%|█▎        | 34/{'loss': 0.1268, 'grad_norm': 0.061860501766204834, 'learning_rate': 9.921380666088558e-05, 'epoch': 0.16}
+{'loss': 0.1106, 'grad_norm': 0.05224749818444252, 'learning_rate': 9.755282581475769e-05, 'epoch': 0.2}
+256 [01:57<12:37,  3.41s/it] 14%|█▎        | 35/256 [02:00<12:43,  3.45s/it] 14%|█▍        | 36/256 [02:04<12:44,  3.47s/it] 14%|█▍        | 37/256 [02:07<12:55,  3.54s/it] 15%|█▍        | 38/256 [02:11<12:51,  3.54s/it] 15%|█▌        | 39/256 [02:14<12:49,  3.55s/it] 16%|█▌        | 40/256 [02:18<12:31,  3.48s/it]                                                 16%|█▌        | 40/256 [02:18<12:31,  3.48s/it] 16%|█▌        | 41/256 [02:21<12:30,  3.49s/it] 16%|█▋        | 42/256 [02:25<12:16,  3.44s/it] 17%|█▋        | 43/256 [02:28<11:57,  3.37s/it] 17%|█▋        | 44/256 [02:31<12:01,  3.40s/it] 18%|█▊        | 45/256 [02:35<12:03,  3.43s/it] 18%|█▊        | 46/256 [02:38<12:00,  3.43s/it] 18%|█▊        | 47/256 [02:41<11:49,  3.39s/it] 19%|█▉        | 48/256 [02:45<11:56,  3.45s/it] 19%|█▉        | 49/256 [02:48<11:49,  3.43s/it] 20%|█▉        | 50/256 [02:52<11:45,  3.43s/it]                                            {'loss': 0.1219, 'grad_norm': 0.03904171288013458, 'learning_rate': 9.500602579710256e-05, 'epoch': 0.23}
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+     20%|█▉        | 50/256 [02:52<11:45,  3.43s/it] 20%|█▉        | 51/256 [02:55<11:18,  3.31s/it] 20%|██        | 52/256 [02:58<11:21,  3.34s/it] 21%|██        | 53/256 [03:02<11:20,  3.35s/it] 21%|██        | 54/256 [03:05<11:38,  3.46s/it] 21%|██▏       | 55/256 [03:09<11:38,  3.47s/it] 22%|██▏       | 56/256 [03:13<11:45,  3.53s/it] 22%|██▏       | 57/256 [03:16<11:36,  3.50s/it] 23%|██▎       | 58/256 [03:19<11:24,  3.46s/it] 23%|██▎       | 59/256 [03:23<11:28,  3.50s/it] 23%|██▎       | 60/256 [03:26<11:15,  3.45s/it]                                                 23%|██▎       | 60/256 [03:26<11:15,  3.45s/it]slurmstepd: error: *** STEP 4829956.0 ON lanta-g-059 CANCELLED AT 2026-03-15T14:39:30 ***
+slurmstepd: error: *** JOB 4829956 ON lanta-g-059 CANCELLED AT 2026-03-15T14:39:30 ***
